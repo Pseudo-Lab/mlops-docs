@@ -58,6 +58,17 @@
 <li class="toctree-l2"><a class="reference internal" href="#id6">데이터 검증</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#appendix">Appendix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mlflow">MLFlow 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mlops-level">MLOps Level</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#level-0">Level 0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#level-1">Level 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#level-2">Level 2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id7"></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#reference">Reference</a></li>
 </ul>
 
@@ -184,6 +195,58 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 </ul>
 </section>
 </section>
+<section id="appendix">
+<h1>Appendix<a class="headerlink" href="#appendix" title="이 제목에 대한 퍼머링크"></a></h1>
+<section id="mlflow">
+<h2>MLFlow 예제<a class="headerlink" href="#mlflow" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://clarit7.github.io/mlflow_tutorial/">mlflow_tutorial</a></p></li>
+</ul>
+</section>
+<section id="mlops-level">
+<h2>MLOps Level<a class="headerlink" href="#mlops-level" title="이 제목에 대한 퍼머링크"></a></h2>
+<p>MLOps 레벨과 특징</p>
+<section id="level-0">
+<h3>Level 0<a class="headerlink" href="#level-0" title="이 제목에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>데이터 분석, 준비, 학습, 검증 모두 수동</p></li>
+<li><p>학습 편향 발생 가능성 증가</p></li>
+<li><p>CI/CD 없음 (간헐적인 출시일 경우)</p></li>
+<li><p>ML 시스템 배포가 아닌 예측 서비스</p></li>
+<li><p>성능 모니터링 부족</p></li>
+</ul>
+</section>
+<section id="level-1">
+<h3>Level 1<a class="headerlink" href="#level-1" title="이 제목에 대한 퍼머링크"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ML</span> <span class="n">파이프라인을</span> <span class="n">자동화하여</span> <span class="n">모델을</span> <span class="n">지속적으로</span> <span class="n">학습</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>학습 자동화 및 파이프라인 구축</p></li>
+<li><p>데이터 및 모델 유효성 검사</p></li>
+<li><p>특성 저장소</p></li>
+<li><p>메타데이터 관리</p></li>
+</ul>
+</section>
+<section id="level-2">
+<h3>Level 2<a class="headerlink" href="#level-2" title="이 제목에 대한 퍼머링크"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Level</span> <span class="mi">1</span><span class="n">에서</span> <span class="n">CI</span><span class="o">/</span><span class="n">CD면에서</span> <span class="n">집중적으로</span> <span class="n">강화된</span> <span class="n">시스템을</span> <span class="n">MLOps</span> <span class="n">Level</span> <span class="mi">2</span><span class="n">로</span> <span class="n">구분</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>소스 제어</p></li>
+<li><p>서비스 테스트 및 빌드</p></li>
+<li><p>배포 서비스</p></li>
+<li><p>모델 레지스트리</p></li>
+<li><p>특성 저장소, ML 메타데이터 저장소</p></li>
+<li><p>ML 파이프라인 조정자</p></li>
+</ul>
+</section>
+</section>
+<section id="id7">
+<h2><a class="headerlink" href="#id7" title="이 제목에 대한 퍼머링크"></a></h2>
+</section>
+</section>
 <section id="reference">
 <h1>Reference<a class="headerlink" href="#reference" title="이 제목에 대한 퍼머링크"></a></h1>
 <table class="colwidths-auto docutils align-default">
@@ -198,6 +261,9 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 </tr>
 <tr class="row-odd"><td><p>2</p></td>
 <td><p><a class="reference external" href="https://www.youtube.com/watch?v=zyGYnYZaUEk">ep2. ML 생애주기 1 - 데이터 준비</a></p></td>
+</tr>
+<tr class="row-even"><td><p>MLOps Level</p></td>
+<td><p><a class="reference external" href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning?hl=ko">cloud.google</a></p></td>
 </tr>
 </tbody>
 </table>
