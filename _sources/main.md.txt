@@ -72,3 +72,11 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 ```
 
 - 검증 요건에 따라 설계 후 검증 쿼리 개발, 검증 결과 모니터링 후 피드백하는 프로세스
+
+
+# Reference
+
+|Chapter|URL|
+|--|---------|
+|1| [ep1. MLOps가 뭐길래](https://www.youtube.com/watch?v=q2N6NZKxipg&list=PLDZRZwFT9Wku509LgbJviEcHxX4AYj3QP&index=2&t=14s) |
+|2|[ep2. ML 생애주기 1 - 데이터 준비](https://www.youtube.com/watch?v=zyGYnYZaUEk)|
