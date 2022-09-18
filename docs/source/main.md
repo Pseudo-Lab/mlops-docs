@@ -74,9 +74,48 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 - 검증 요건에 따라 설계 후 검증 쿼리 개발, 검증 결과 모니터링 후 피드백하는 프로세스
 
 
+# Appendix
+## MLFlow 예제
+- [mlflow_tutorial](https://clarit7.github.io/mlflow_tutorial/)
+  
+## MLOps Level
+MLOps 레벨과 특징
+### Level 0
+- 데이터 분석, 준비, 학습, 검증 모두 수동
+- 학습 편향 발생 가능성 증가
+- CI/CD 없음 (간헐적인 출시일 경우)
+- ML 시스템 배포가 아닌 예측 서비스
+- 성능 모니터링 부족
+
+### Level 1 
+```
+ML 파이프라인을 자동화하여 모델을 지속적으로 학습
+```
+
+- 학습 자동화 및 파이프라인 구축
+- 데이터 및 모델 유효성 검사
+- 특성 저장소
+- 메타데이터 관리
+
+### Level 2
+```
+Level 1에서 CI/CD면에서 집중적으로 강화된 시스템을 MLOps Level 2로 구분
+```
+- 소스 제어
+- 서비스 테스트 및 빌드
+- 배포 서비스
+- 모델 레지스트리
+- 특성 저장소, ML 메타데이터 저장소
+- ML 파이프라인 조정자
+
+
+
+## 
+
 # Reference
 
 |Chapter|URL|
 |--|---------|
 |1| [ep1. MLOps가 뭐길래](https://www.youtube.com/watch?v=q2N6NZKxipg&list=PLDZRZwFT9Wku509LgbJviEcHxX4AYj3QP&index=2&t=14s) |
 |2|[ep2. ML 생애주기 1 - 데이터 준비](https://www.youtube.com/watch?v=zyGYnYZaUEk)|
+|MLOps Level|[cloud.google](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning?hl=ko)|
