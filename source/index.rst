@@ -3,16 +3,23 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-정리하며 배우는 MLOps
+테스트
 =================================
 
-`<https://www.notion.so/chanrankim/MLOps-c116fa04c8b547b6b88c49b6d16204ad/>`_
-
-=================================
+* 테스트
 
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
 
    main
+ 
+ condition
+ parallel
 
+ data-passing
+
+ visualize
+
+ linear_regression
+ produce and consume

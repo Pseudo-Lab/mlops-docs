@@ -23,9 +23,9 @@ source_parsers = {
 
 # -- Project information -----------------------------------------------------
 
-project = 'mlops'
-copyright = '2022, DongjunNa'
-author = 'DongjunNa'
+project = '정리하며 배우는 MLOps'
+copyright = '2022, 정리하며 배우는 MLOps 5기 스터디 팀'
+author = '2022, 정리하며 배우는 MLOps 5기 스터디 팀'
 
 # The full version, including alpha/beta/rc tags
 release = '1.0.0'
