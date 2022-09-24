@@ -58,6 +58,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#id6">데이터 검증</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#chapter-3-mlops-lifecycle-2">Chapter 3. MLOps Lifecycle 2 : 실험 학습</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id7">실험, 모델 학습/최적화/비교평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">실험 추적관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">자동화된 ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">모델의 검증</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#appendix">Appendix</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#mlflow">MLFlow 예제</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mlops-level">MLOps Level</a><ul>
@@ -66,7 +73,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#level-2">Level 2</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id7"></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11"></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#reference">Reference</a></li>
@@ -195,6 +202,73 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 </ul>
 </section>
 </section>
+<section id="chapter-3-mlops-lifecycle-2">
+<h1>Chapter 3. MLOps Lifecycle 2 : 실험 학습<a class="headerlink" href="#chapter-3-mlops-lifecycle-2" title="이 제목에 대한 퍼머링크"></a></h1>
+<section id="id7">
+<h2>실험, 모델 학습/최적화/비교평가<a class="headerlink" href="#id7" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>ML Lifecycle에서 <code class="docutils literal notranslate"><span class="pre">실험/학습</span></code> 파트</p></li>
+<li><p>데이터 가공 및 검증 파트가 데이터 준비 파트와 겹침</p>
+<ul>
+<li><p>데이터 가공 결과에 따라 모델이 변경되기도 함</p></li>
+<li><p>모델 성능에 데이터가 직접적인 영향을 미침</p></li>
+</ul>
+</li>
+</ul>
+<p>-&gt; 대규모 데이터를 대용량 클러스터에서 처리하는 것도 이 과정에 포함</p>
+<ul class="simple">
+<li><p>모델은 아래 입력 조건에 따라 결정됨</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">-</span> <span class="n">데이터</span>
+    <span class="o">-</span> <span class="n">학습</span> <span class="n">알고리즘</span>
+    <span class="o">-</span> <span class="n">하이퍼파라미터</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>입력 조건들을 바꿔가며 최적의 모델을 찾아가는 과정을 실험이라 부름</p></li>
+<li><p>이러한 반복적인 과정을 보다 쉽게 관리하고자 함</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>실험 추적관리<a class="headerlink" href="#id8" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">실험</span> <span class="pre">실행</span></code>: 위 3가지 입력(데이터, 학습 알고리즘, 하이퍼 파라미터)으로 하나의 실험을 수행</p></li>
+<li><p>위 실험과정에서 다양한 산출물들(입력 조건, 모델, 실험이력 등)이 발생하는데, 이를 체계적으로 관리하는 것이 중요함</p></li>
+<li><p>각 실험에 대해 입력값을 관리 + 산출된 모델의 메타 정보 관리</p></li>
+<li><p>애저에서는 실험별로 사용된 데이터 &amp; 모델의 버전 관리 &amp;  성능 확인 &amp; 서비스로 배포된 모델 추적 등의 기능을 제공함</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2>자동화된 ML<a class="headerlink" href="#id9" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>위 과정을 자동화하기 위한 도구(애저의 기능 이름인 듯, 일반적으로 Hyperparameter Optimization)</p></li>
+<li><p>높은 성능의 모델을 효율적으로 찾으려면?</p></li>
+<li><p>입력 조건에 따른 성능을 예측하고, 성능이 좋을 것으로 예상되는 입력 조건으로 다음 실험을 진행 &amp; 이 과정을 반복 수행</p></li>
+<li><p>애저에서는 이 작업을 수행할 때 다수의 모델이 실행되고 앙상블도 실행됨. 기본적인 성능 지표, 모델을 만들기위한 과정도 로그로 저장됨. 스냅샷 기능은 당시 실행한 py 파일 저장해둠.</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>모델의 검증<a class="headerlink" href="#id10" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>예측 성능</p>
+<ul>
+<li><p>모델의 예측값이 실제값에 얼마나 가까운지</p></li>
+<li><p>얼마나 잘 일반화(Generalized)되는지</p></li>
+<li><p>DS가 관심을 두는 부분</p></li>
+</ul>
+</li>
+<li><p>처리 성능</p>
+<ul>
+<li><p>모델이 예측값을 계산해내는데 소요되는 시간, 사용하는 컴퓨팅 자원</p></li>
+<li><p>안정적으로 얻을 수 있는 추론 성능</p></li>
+<li><p>SWE가 관심을 두는 부분</p></li>
+<li><p>서비스가 얼마나 안정적으로 되고 있는지 파악할 수 있는 요소(처리 시간, 처리량, 실패 유형 등)</p></li>
+<li><p>애저에서는 어플리케이션 인사이트 기능을 이용함. 코드에서 발생하는 모든 로그 정보가 한 곳에서 통합 관리됨</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
 <section id="appendix">
 <h1>Appendix<a class="headerlink" href="#appendix" title="이 제목에 대한 퍼머링크"></a></h1>
 <section id="mlflow">
@@ -243,8 +317,8 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 </ul>
 </section>
 </section>
-<section id="id7">
-<h2><a class="headerlink" href="#id7" title="이 제목에 대한 퍼머링크"></a></h2>
+<section id="id11">
+<h2><a class="headerlink" href="#id11" title="이 제목에 대한 퍼머링크"></a></h2>
 </section>
 </section>
 <section id="reference">
@@ -262,8 +336,14 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 <tr class="row-odd"><td><p>2</p></td>
 <td><p><a class="reference external" href="https://www.youtube.com/watch?v=zyGYnYZaUEk">ep2. ML 생애주기 1 - 데이터 준비</a></p></td>
 </tr>
-<tr class="row-even"><td><p>MLOps Level</p></td>
+<tr class="row-even"><td><p>Appendix : MLOps Level</p></td>
 <td><p><a class="reference external" href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning?hl=ko">cloud.google</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p><a class="reference external" href="https://www.youtube.com/watch?v=zyGYnYZaUEk">ep3. ML 생애주기 2 - 실험 학습</a></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">ep3. ML 생애주기 2 - 실험 학습 정리</a></p></td>
 </tr>
 </tbody>
 </table>

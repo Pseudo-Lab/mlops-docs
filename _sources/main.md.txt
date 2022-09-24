@@ -73,6 +73,46 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 
 - 검증 요건에 따라 설계 후 검증 쿼리 개발, 검증 결과 모니터링 후 피드백하는 프로세스
 
+# Chapter 3. MLOps Lifecycle 2 : 실험 학습
+
+## 실험, 모델 학습/최적화/비교평가
+- ML Lifecycle에서 `실험/학습` 파트
+- 데이터 가공 및 검증 파트가 데이터 준비 파트와 겹침
+  - 데이터 가공 결과에 따라 모델이 변경되기도 함
+  - 모델 성능에 데이터가 직접적인 영향을 미침
+
+-> 대규모 데이터를 대용량 클러스터에서 처리하는 것도 이 과정에 포함
+
+- 모델은 아래 입력 조건에 따라 결정됨
+```
+    - 데이터
+    - 학습 알고리즘
+    - 하이퍼파라미터
+```
+- 입력 조건들을 바꿔가며 최적의 모델을 찾아가는 과정을 실험이라 부름
+- 이러한 반복적인 과정을 보다 쉽게 관리하고자 함
+## 실험 추적관리
+- `실험 실행`: 위 3가지 입력(데이터, 학습 알고리즘, 하이퍼 파라미터)으로 하나의 실험을 수행
+- 위 실험과정에서 다양한 산출물들(입력 조건, 모델, 실험이력 등)이 발생하는데, 이를 체계적으로 관리하는 것이 중요함
+- 각 실험에 대해 입력값을 관리 + 산출된 모델의 메타 정보 관리
+- 애저에서는 실험별로 사용된 데이터 & 모델의 버전 관리 &  성능 확인 & 서비스로 배포된 모델 추적 등의 기능을 제공함
+## 자동화된 ML
+- 위 과정을 자동화하기 위한 도구(애저의 기능 이름인 듯, 일반적으로 Hyperparameter Optimization)
+- 높은 성능의 모델을 효율적으로 찾으려면?
+- 입력 조건에 따른 성능을 예측하고, 성능이 좋을 것으로 예상되는 입력 조건으로 다음 실험을 진행 & 이 과정을 반복 수행
+- 애저에서는 이 작업을 수행할 때 다수의 모델이 실행되고 앙상블도 실행됨. 기본적인 성능 지표, 모델을 만들기위한 과정도 로그로 저장됨. 스냅샷 기능은 당시 실행한 py 파일 저장해둠.
+  
+## 모델의 검증
+- 예측 성능
+    - 모델의 예측값이 실제값에 얼마나 가까운지
+    - 얼마나 잘 일반화(Generalized)되는지
+    - DS가 관심을 두는 부분
+- 처리 성능
+    - 모델이 예측값을 계산해내는데 소요되는 시간, 사용하는 컴퓨팅 자원
+    - 안정적으로 얻을 수 있는 추론 성능
+    - SWE가 관심을 두는 부분
+    - 서비스가 얼마나 안정적으로 되고 있는지 파악할 수 있는 요소(처리 시간, 처리량, 실패 유형 등)
+    - 애저에서는 어플리케이션 인사이트 기능을 이용함. 코드에서 발생하는 모든 로그 정보가 한 곳에서 통합 관리됨
 
 # Appendix
 ## MLFlow 예제
@@ -118,4 +158,6 @@ Level 1에서 CI/CD면에서 집중적으로 강화된 시스템을 MLOps Level 
 |--|---------|
 |1| [ep1. MLOps가 뭐길래](https://www.youtube.com/watch?v=q2N6NZKxipg&list=PLDZRZwFT9Wku509LgbJviEcHxX4AYj3QP&index=2&t=14s) |
 |2|[ep2. ML 생애주기 1 - 데이터 준비](https://www.youtube.com/watch?v=zyGYnYZaUEk)|
-|MLOps Level|[cloud.google](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning?hl=ko)|
+|Appendix : MLOps Level|[cloud.google](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning?hl=ko)|
+|3|[ep3. ML 생애주기 2 - 실험 학습](https://www.youtube.com/watch?v=zyGYnYZaUEk)|
+|3|[ep3. ML 생애주기 2 - 실험 학습 정리](https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc)|
