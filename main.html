@@ -16,6 +16,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/translations.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="색인" href="genindex.html" />
@@ -65,6 +66,31 @@
 <li class="toctree-l2"><a class="reference internal" href="#id10">모델의 검증</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#chapter-4-mlops-lifecycle-3">Chapter 4. MLOps Lifecycle 3 : 모델 해석</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id11">모델 해석의 필요성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">모델 해석 분류 기준</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">모델 해석 방법</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#chapter-4-mlops-lifecycle-4">Chapter 4. MLOps Lifecycle 4 : 모델 배포 및 서빙</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id14">모델 모니터링</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">모델 성능 하락 원인</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#k8s-kubeflow">k8s, kubeflow 기본</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#k8s">k8s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">k8s 클러스터 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#master-worker-node">Master / Worker Node</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#master-node">Master Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#worker-node">Worker Node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kubeflow">Kubeflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kubeflow-workflow">Kubeflow workflow</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#appendix">Appendix</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#mlflow">MLFlow 예제</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mlops-level">MLOps Level</a><ul>
@@ -73,7 +99,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#level-2">Level 2</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id11"></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17"></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#reference">Reference</a></li>
@@ -269,6 +295,93 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 </ul>
 </section>
 </section>
+<section id="chapter-4-mlops-lifecycle-3">
+<h1>Chapter 4. MLOps Lifecycle 3 : 모델 해석<a class="headerlink" href="#chapter-4-mlops-lifecycle-3" title="이 제목에 대한 퍼머링크"></a></h1>
+<section id="id11">
+<h2>모델 해석의 필요성<a class="headerlink" href="#id11" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><img alt="week4_1" src="_images/mlops_week4_1.png" /></p>
+<ul class="simple">
+<li><p>대부분은 Black Box Model이다.</p></li>
+<li><p>정확도 만으로 모델의 성능을 평가할 수 없다.</p></li>
+<li><p>모델이 예측을 잘하는지 객관적 평가, 성능지표가 필요하다</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2>모델 해석 분류 기준<a class="headerlink" href="#id12" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Intrinsic</span> <span class="pre">vs</span> <span class="pre">Post-hoc</span></code> : 모델 자체로 해석 여부 가능한지, 아니라면 해석을 위한 새로운 모델링</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Model-specific</span> <span class="pre">vs</span> <span class="pre">Model-agnostic</span></code> : 특정 모델에만 적용되는지</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Global</span> <span class="pre">vs</span> <span class="pre">Local</span></code> : 데이터에 따른 모델의 범위</p></li>
+</ul>
+</section>
+<section id="id13">
+<h2>모델 해석 방법<a class="headerlink" href="#id13" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><img alt="week4_2" src="_images/mlops_week4_2.png" /></p>
+</section>
+</section>
+<section id="chapter-4-mlops-lifecycle-4">
+<h1>Chapter 4. MLOps Lifecycle 4 : 모델 배포 및 서빙<a class="headerlink" href="#chapter-4-mlops-lifecycle-4" title="이 제목에 대한 퍼머링크"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">Serving</span></code>이란 다른 <code class="docutils literal notranslate"><span class="pre">애플리케이션에서</span> <span class="pre">ML</span> <span class="pre">모델을</span> <span class="pre">사용할</span> <span class="pre">수</span> <span class="pre">있도록</span> <span class="pre">모델을</span> <span class="pre">배포</span></code>하거나, <code class="docutils literal notranslate"><span class="pre">모델</span> <span class="pre">API를</span> <span class="pre">제공</span></code>하는 것을 의미</p>
+<p><img alt="week4_3" src="_images/mlops_week4_3.png" /></p>
+<section id="id14">
+<h2>모델 모니터링<a class="headerlink" href="#id14" title="이 제목에 대한 퍼머링크"></a></h2>
+<p>서빙 단계에서는 모니터링의 기능을 제공하여 모델에 대한 성능을 주기적으로 확인해야 함</p>
+<section id="id15">
+<h3>모델 성능 하락 원인<a class="headerlink" href="#id15" title="이 제목에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>Data Drift: 데이터의 통계적 변형</p></li>
+<li><p>Schema Drift: 데이터 스키마 변형</p></li>
+<li><p>Data Skew: 데이터의 불균형</p></li>
+<li><p>Concept Drift: 비즈니스 목적의 변형</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="k8s-kubeflow">
+<h1>k8s, kubeflow 기본<a class="headerlink" href="#k8s-kubeflow" title="이 제목에 대한 퍼머링크"></a></h1>
+<section id="k8s">
+<h2>k8s<a class="headerlink" href="#k8s" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>서비스 디스커버리와 로드 밸런싱 : DNS 이름을 사용하거나 자체 IP 주소를 사용하여 컨테이너를 노출</p></li>
+<li><p>스토리지 오케스트레이션 : 로컬 저장소, 공용 클라우드 공급자 등과 같이 원하는 저장소 시스템을 자동으로 탑재</p></li>
+<li><p>자동화된 롤아웃과 롤백 : 원하는 상태를 서술하고 현재 상태를 원하는 상태로 설정한 속도에 따라 변경 가능</p></li>
+<li><p>자동화된 빈 패킹 : 각 컨테이너가 필요로 하는 CPU와 메모리(RAM)를 제공</p></li>
+<li><p>자동화된 복구(self-healing) : 실패한 컨테이너를 다시 시작하고, 컨테이너를 교체</p></li>
+<li><p>시크릿과 구성 관리 : 암호, OAuth 토큰 및 SSH 키와 같은 중요한 정보를 저장하고 관리</p></li>
+</ul>
+</section>
+<section id="id16">
+<h2>k8s 클러스터 구조<a class="headerlink" href="#id16" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><img alt="week4_4" src="_images/mlops_week4_4.png" /></p>
+<ul class="simple">
+<li><p>쿠버네티스 아키텍처에서 클러스터(Cluster)란 컨테이너 형태의 애플리케이션을 호스팅하는 물리/가상 환경의 노드들로 이루어진 집합</p></li>
+<li><p>Node는 하나의 가상머신을 의미합니다.
+쿠버네티스는 컨테이너화 된 애플리케이션을 실행하는 Worker Node와 그러한 Worker Node를 관리하는 Master Node로 구성됩니다.</p></li>
+</ul>
+</section>
+<section id="master-worker-node">
+<h2>Master / Worker Node<a class="headerlink" href="#master-worker-node" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><img alt="week4_5" src="_images/mlops_week4_5.png" /></p>
+<section id="master-node">
+<h3>Master Node<a class="headerlink" href="#master-node" title="이 제목에 대한 퍼머링크"></a></h3>
+<p><img alt="masternode" src="_images/masternode.png" /></p>
+</section>
+<section id="worker-node">
+<h3>Worker Node<a class="headerlink" href="#worker-node" title="이 제목에 대한 퍼머링크"></a></h3>
+<p><img alt="workernode" src="_images/workernode.png" /></p>
+</section>
+</section>
+<section id="kubeflow">
+<h2>Kubeflow<a class="headerlink" href="#kubeflow" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><img alt="kubeflow" src="_images/mlops_week4_6.png" /></p>
+<p><img alt="kubeflowcomponent" src="_images/kubeflowcomponent.png" /></p>
+</section>
+<section id="kubeflow-workflow">
+<h2>Kubeflow workflow<a class="headerlink" href="#kubeflow-workflow" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><img alt="kubeflowcomponent" src="_images/exflow.png" />
+<img alt="kubeflowcomponent" src="_images/productionflow.png" /></p>
+</section>
+</section>
 <section id="appendix">
 <h1>Appendix<a class="headerlink" href="#appendix" title="이 제목에 대한 퍼머링크"></a></h1>
 <section id="mlflow">
@@ -317,8 +430,8 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 </ul>
 </section>
 </section>
-<section id="id11">
-<h2><a class="headerlink" href="#id11" title="이 제목에 대한 퍼머링크"></a></h2>
+<section id="id17">
+<h2><a class="headerlink" href="#id17" title="이 제목에 대한 퍼머링크"></a></h2>
 </section>
 </section>
 <section id="reference">
@@ -344,6 +457,36 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 </tr>
 <tr class="row-even"><td><p>3</p></td>
 <td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">ep3. ML 생애주기 2 - 실험 학습 정리</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">ep4. ML 생애주기 3 - 모델 해석</a></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">ep5. ML 생애주기 4 - 모델 배포 및 서빙</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">k8s</a></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tech.ktcloud.com/70?category=465864">kubeflow 구조</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">kubeflow</a></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://chacha95.github.io/2020-10-17-Docker_Kubernetes10/">kubeflow구성요소</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://learning-sarah.tistory.com/entry/Kubeflow-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C-Fairing?category=1010018">kubeflow구성요소</a></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">kubeflow</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://devocean.sk.com/blog/techBoardDetail.do?ID=163645">kubeflow서빙</a></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://www.kubeflow.org/docs/">kubeflow공식문서</a></p></td>
 </tr>
 </tbody>
 </table>
