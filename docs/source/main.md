@@ -101,7 +101,7 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 - 높은 성능의 모델을 효율적으로 찾으려면?
 - 입력 조건에 따른 성능을 예측하고, 성능이 좋을 것으로 예상되는 입력 조건으로 다음 실험을 진행 & 이 과정을 반복 수행
 - 애저에서는 이 작업을 수행할 때 다수의 모델이 실행되고 앙상블도 실행됨. 기본적인 성능 지표, 모델을 만들기위한 과정도 로그로 저장됨. 스냅샷 기능은 당시 실행한 py 파일 저장해둠.
-  
+#  Chapter 4. MLOps Lifecycle : 모델 검증 및 배포, 서빙 / k8s, kubeflow 기본 
 ## 모델의 검증
 - 예측 성능
     - 모델의 예측값이 실제값에 얼마나 가까운지
@@ -114,8 +114,8 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
     - 서비스가 얼마나 안정적으로 되고 있는지 파악할 수 있는 요소(처리 시간, 처리량, 실패 유형 등)
     - 애저에서는 어플리케이션 인사이트 기능을 이용함. 코드에서 발생하는 모든 로그 정보가 한 곳에서 통합 관리됨
 
-# Chapter 4. MLOps Lifecycle 3 : 모델 해석
-## 모델 해석의 필요성
+## MLOps Lifecycle 3 : 모델 해석
+### 모델 해석의 필요성
 
 ![week4_1](img/week4/mlops_week4_1.png)
 
@@ -123,56 +123,56 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 - 정확도 만으로 모델의 성능을 평가할 수 없다.
 - 모델이 예측을 잘하는지 객관적 평가, 성능지표가 필요하다
 
-## 모델 해석 분류 기준
+### 모델 해석 분류 기준
 - `Intrinsic vs Post-hoc` : 모델 자체로 해석 여부 가능한지, 아니라면 해석을 위한 새로운 모델링
 - `Model-specific vs Model-agnostic` : 특정 모델에만 적용되는지
 - `Global vs Local` : 데이터에 따른 모델의 범위
 
-## 모델 해석 방법
+### 모델 해석 방법
 ![week4_2](img/week4/mlops_week4_2.png)
 
-# Chapter 4. MLOps Lifecycle 4 : 모델 배포 및 서빙
+## MLOps Lifecycle 4 : 모델 배포 및 서빙
 `Model Serving`이란 다른 `애플리케이션에서 ML 모델을 사용할 수 있도록 모델을 배포`하거나, `모델 API를 제공`하는 것을 의미
 
 ![week4_3](img/week4/mlops_week4_3.png)
 
-## 모델 모니터링
+### 모델 모니터링
 서빙 단계에서는 모니터링의 기능을 제공하여 모델에 대한 성능을 주기적으로 확인해야 함
-### 모델 성능 하락 원인
+#### 모델 성능 하락 원인
 - Data Drift: 데이터의 통계적 변형
 - Schema Drift: 데이터 스키마 변형
 - Data Skew: 데이터의 불균형
 - Concept Drift: 비즈니스 목적의 변형
 
-# k8s, kubeflow 기본
-## k8s
+## k8s, kubeflow 기본
+### k8s
 - 서비스 디스커버리와 로드 밸런싱 : DNS 이름을 사용하거나 자체 IP 주소를 사용하여 컨테이너를 노출
 - 스토리지 오케스트레이션 : 로컬 저장소, 공용 클라우드 공급자 등과 같이 원하는 저장소 시스템을 자동으로 탑재 
 - 자동화된 롤아웃과 롤백 : 원하는 상태를 서술하고 현재 상태를 원하는 상태로 설정한 속도에 따라 변경 가능 
 - 자동화된 빈 패킹 : 각 컨테이너가 필요로 하는 CPU와 메모리(RAM)를 제공 
 - 자동화된 복구(self-healing) : 실패한 컨테이너를 다시 시작하고, 컨테이너를 교체
 - 시크릿과 구성 관리 : 암호, OAuth 토큰 및 SSH 키와 같은 중요한 정보를 저장하고 관리 
-## k8s 클러스터 구조
+### k8s 클러스터 구조
 ![week4_4](img/week4/mlops_week4_4.png)
 - 쿠버네티스 아키텍처에서 클러스터(Cluster)란 컨테이너 형태의 애플리케이션을 호스팅하는 물리/가상 환경의 노드들로 이루어진 집합
 - Node는 하나의 가상머신을 의미합니다. 
 쿠버네티스는 컨테이너화 된 애플리케이션을 실행하는 Worker Node와 그러한 Worker Node를 관리하는 Master Node로 구성됩니다.
 
-## Master / Worker Node
+### Master / Worker Node
 ![week4_5](img/week4/mlops_week4_5.png)
 
-### Master Node
+#### Master Node
 ![masternode](img/week4/../masternode.png)
 
-### Worker Node
+#### Worker Node
 ![workernode](img/week4/../workernode.png)
 
-## Kubeflow
+### Kubeflow
 ![kubeflow](img/week4/../week4/mlops_week4_6.png)
 
 ![kubeflowcomponent](img/week4/../kubeflowcomponent.png)
 
-## Kubeflow workflow
+### Kubeflow workflow
 
 ![kubeflowcomponent](img/week4/../exflow.png)
 ![kubeflowcomponent](img/week4/../productionflow.png)
