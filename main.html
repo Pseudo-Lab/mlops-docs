@@ -114,6 +114,50 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#chapter-6-pipeline-1">Chapter 6. Pipeline - 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline">Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#argo-cd">Argo CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kubeflow-pipeline">Kubeflow Pipeline 구성요소</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kubeflow-ui">Kubeflow UI 웹 서버</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-sdk">Python SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pipelines-service">Pipelines Service (중앙 제어)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kubernetes">Kubernetes 리소스 (리소스 생성)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#job">오케스트레이션 컨트롤러 (컨테이너(Job) 실행)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pipeline-persistence-agent">Pipeline Persistence Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kube-api-server">Kube API Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metadata">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#artifact">Artifact</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#chapter-7-pipeline-2">Chapter 7. Pipeline - 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id26">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kfp">KFP 용어</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#component">Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step">Step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#experiment">Experiment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-and-recurring-run-experiment">Run and Recurring run (Experiment 내 포함)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Artifact</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsl">DSL</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kfp-sdk">KFP SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kfp-cli-tool">KFP CLI Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id28">컴포넌트 생성 실습</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id29">순서</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id30">1. 컴포넌트 작성</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">2. 컴포넌트 도커이미지 생성</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32">3. 컴포넌트 만들기 - 컴포넌트 빌드</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id33">4. 파이프라인 빌드</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id34">5. 파이프라인 컴파일 후 업로드</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">파이프라인 패턴</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#appendix">Appendix</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#mlflow">MLFlow 예제</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mlops-level">MLOps Level</a><ul>
@@ -122,7 +166,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#level-2">Level 2</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id26"></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id36"></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#reference">Reference</a></li>
@@ -538,6 +582,228 @@ kubectl config delete-context my-cluster-context
 </section>
 </section>
 </section>
+<section id="chapter-6-pipeline-1">
+<h1>Chapter 6. Pipeline - 1<a class="headerlink" href="#chapter-6-pipeline-1" title="이 제목에 대한 퍼머링크"></a></h1>
+<section id="pipeline">
+<h2>Pipeline<a class="headerlink" href="#pipeline" title="이 제목에 대한 퍼머링크"></a></h2>
+<p>Kubeflow Pipeline은 docker 컨테이너를 기반으로 확장 가능한 ML Workflow를 구축하고 개발하기 위한 플랫폼, Argo CD를 기반으로 만들어졌음</p>
+</section>
+<section id="argo-cd">
+<h2>Argo CD<a class="headerlink" href="#argo-cd" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>할당된 리소스에 어떤 컨테이너를 실행할지 컨트롤 하는 역할</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>사용자가 YAML DAG 명세를 작성하여 쿠버네티스 마스터에 요청을 합니다.</p></li>
+<li><p>쿠버네티스 API 서버가 명세를 받아 etcd DB에 workflow 정보를 저장합니다.</p></li>
+<li><p>Argo controller가 reconcilation loop에서 etcd DB의 새로운 정보를 확인하고 kube-scheduler에 필요한 Pod를 요청합니다.</p></li>
+<li><p>kube-scheduler는 Pod를 적절한 노드에 스케줄링합니다.</p></li>
+<li><p>Argo controller가 다음번 reconcilation loop에서 다음 dependency가 걸려 있는 Job을 요청합니다.</p></li>
+</ol>
+</section>
+<section id="kubeflow-pipeline">
+<h2>Kubeflow Pipeline 구성요소<a class="headerlink" href="#kubeflow-pipeline" title="이 제목에 대한 퍼머링크"></a></h2>
+<section id="kubeflow-ui">
+<h3>Kubeflow UI 웹 서버<a class="headerlink" href="#kubeflow-ui" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>Pipelines 웹 서버는 다양한 서비스에서 데이터를 수집하여 현재 실행중인 Pipelines 목록, Pipelines 실행 기록, data artifact 목록, 개별 Pipelines 실행에 대한 디버깅 정보, 개별 Pipelines 실행에 대한 실행 상태를 표시함</p>
+</section>
+<section id="python-sdk">
+<h3>Python SDK<a class="headerlink" href="#python-sdk" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>Kubeflow Pipelines 도메인 별 언어 (*DSL)를 사용하여 component를 생성하거나 Pipelines을 지정 (python code to .yaml)</p>
+</section>
+<section id="pipelines-service">
+<h3>Pipelines Service (중앙 제어)<a class="headerlink" href="#pipelines-service" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>Pipelines 서비스를 호출하여 정적 구성에서 실행되는 Pipelines 생성 요청, 실행 요청(쿠버네티스 리소스 준비 및 실행), 등록, Workflow 저장 기능 수행</p>
+</section>
+<section id="kubernetes">
+<h3>Kubernetes 리소스 (리소스 생성)<a class="headerlink" href="#kubernetes" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>Pipelines 서비스는 *Kubernetes API 서버를 호출하여 Pipelines을 실행하는 데 필요한 Kubernetes 리소스 (CRD)를 만듬</p>
+</section>
+<section id="job">
+<h3>오케스트레이션 컨트롤러 (컨테이너(Job) 실행)<a class="headerlink" href="#job" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>일련의 오케스트레이션 컨트롤러는 Pipelines을 완료하는데 필요한 컨테이너를 실행하며, 컨테이너는 가상 머신의 Kubernetes pod 내에서 실행됨</p>
+</section>
+<section id="pipeline-persistence-agent">
+<h3>Pipeline Persistence Agent<a class="headerlink" href="#pipeline-persistence-agent" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>파이프라인 서비스가 생성한 리소스를 추적하고 메타데이터 서비스의 리소스 상태를 기록 / 컨테이너 실행 추적</p>
+</section>
+<section id="kube-api-server">
+<h3>Kube API Server<a class="headerlink" href="#kube-api-server" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>API 서버는 최종 사용자, 클러스터의 다른 부분 그리고 외부 컴포넌트가 서로 통신할 수 있도록 HTTP API를 제공한다. 쿠버네티스 API를 사용하면 쿠버네티스의 API 오브젝트(예: 파드(Pod), 네임스페이스(Namespace), 컨피그맵(ConfigMap) 그리고 이벤트(Event))를 질의(query)하고 조작</p>
+</section>
+<section id="metadata">
+<h3>Metadata<a class="headerlink" href="#metadata" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>Experimentation, Job, Pipelines 실행 및 모델 Evaluation.</p>
+</section>
+<section id="artifact">
+<h3>Artifact<a class="headerlink" href="#artifact" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>Kubeflow Pipelines는 Minio 서버 또는 Cloud Storage와 같은 Artifact 저장소에 Artifact를 저장</p>
+</section>
+</section>
+</section>
+<section id="chapter-7-pipeline-2">
+<h1>Chapter 7. Pipeline - 2<a class="headerlink" href="#chapter-7-pipeline-2" title="이 제목에 대한 퍼머링크"></a></h1>
+<ul class="simple">
+<li><p>Pipeline 구축과 개발 패턴에 대한 스터디</p></li>
+</ul>
+<section id="id26">
+<h2>설치 방법<a class="headerlink" href="#id26" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><a class="reference external" href="https://www.manceps.com/articles/tutorial/how-to-install-kubeflow-on-various-operating-systems">참고</a></p>
+</section>
+<section id="kfp">
+<h2>KFP 용어<a class="headerlink" href="#kfp" title="이 제목에 대한 퍼머링크"></a></h2>
+<section id="component">
+<h3>Component<a class="headerlink" href="#component" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>특정 프로그램, entrypoint를 컨테이너 안에서 표현한 것(함수와 같이 input/output 존재, yaml 포맷으로 구성)</p>
+<ul class="simple">
+<li><p>Metadata : name, description</p></li>
+<li><p>Interface : Input / Output 정의</p></li>
+<li><p>Data passing : Input / Output의 Args(Command-line 또는 파일 경로)</p></li>
+</ul>
+</section>
+<section id="step">
+<h3>Step<a class="headerlink" href="#step" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>Pipeline의 Component 내 실행 단위 (컴포넌트 연결 표시)</p>
+</section>
+<section id="experiment">
+<h3>Experiment<a class="headerlink" href="#experiment" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>Pipeline이 실행되는 workspace (파이프라인은 Workspace 안에서 실행)</p>
+</section>
+<section id="run-and-recurring-run-experiment">
+<h3>Run and Recurring run (Experiment 내 포함)<a class="headerlink" href="#run-and-recurring-run-experiment" title="이 제목에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>Run : Pipeline의 Single execution (runtime graph, output artifact, log 포함)</p></li>
+<li><p>Recurring run : pipeline의 반복 실행 단위</p></li>
+</ul>
+</section>
+<section id="id27">
+<h3>Artifact<a class="headerlink" href="#id27" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>모델 Train과 test 결과 (log, model)</p>
+</section>
+<section id="dsl">
+<h3>DSL<a class="headerlink" href="#dsl" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>Python to yaml format</p>
+</section>
+</section>
+<section id="kfp-sdk">
+<h2>KFP SDK<a class="headerlink" href="#kfp-sdk" title="이 제목에 대한 퍼머링크"></a></h2>
+<p>KFP SDK : ML Workflow를 지정하고 실행하는데 사용할 수 있는 Python Package</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>목적</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>kfp.compiler</p></td>
+<td><p>파이프라인을 컴파일</p></td>
+<td><p>(YMAL 형식으로, Argo workflow 형태)</p></td>
+</tr>
+<tr class="row-odd"><td><p>kfp.components</p></td>
+<td><p>구성된 파이프라인 Load / 파이프라인 내 함수 호출</p></td>
+<td><p>파이프 라인과 interacting하기 위한 Class 및 Method를 포함</p></td>
+</tr>
+<tr class="row-even"><td><p>kfp.containers</p></td>
+<td><p>컴포넌트 컨테이너 이미지를 빌드</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>kfp.dsl</p></td>
+<td><p>파이프 라인 및 컴포넌트를 정의하고 상호작용</p></td>
+<td><p>파이프 라인 및 구성 요소를 정의하고 상호 작용하는 데 사용할 수 있는 DSL이 포함</p></td>
+</tr>
+<tr class="row-even"><td><p>kfp.client</p></td>
+<td><p>Pipeline 실행</p></td>
+<td><p>Kubeflow Pipelines를 위한 client libraries</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="kfp-cli-tool">
+<h2>KFP CLI Tool<a class="headerlink" href="#kfp-cli-tool" title="이 제목에 대한 퍼머링크"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>목적</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>kfp diagnose_me</p></td>
+<td><p>지정된 파라미터로 환경 진단</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">json :</span></code> 명령 실행 결과를 JSON으로 반환하도록 합니다. 별도로 설정하지 않으면, 결과는 사람이 읽을 수 있는 형식으로 반환됩니다. <code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">TEXT :</span></code> 대상 쿠버네티스 네임스페이스를 지정합니다. 별도로 설정하지 않으면, 모든 네임스페이스를 대상으로 합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p>kfp pipeline <COMMAND></p></td>
+<td><p>파이프 라인을 관리</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">get :</span></code> Kubeflow Pipelines 클러스터의 Kubeflow 파이프 라인에 대한 상세한 정보를 조회합니다. <code class="docutils literal notranslate"><span class="pre">list :</span></code> Kubeflow Pipelines 클러스터에 업로드 된 파이프 라인 목록을 조회 합니다. <code class="docutils literal notranslate"><span class="pre">upload :</span></code> Kubeflow Pipelines 클러스터에 파이프 라인을 업로드합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p>kfp run <COMMAND></p></td>
+<td><p>파이프 라인 실행</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">get</span> <span class="pre">:</span></code> 파이프 라인 실행의 상세한 정보를 조회합니다. <code class="docutils literal notranslate"><span class="pre">list :</span></code> 최근 실행한 파이프 라인 실행 목록을 조회 합니다 submit – 파이프 라인을 실행 시킵니다.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id28">
+<h2>컴포넌트 생성 실습<a class="headerlink" href="#id28" title="이 제목에 대한 퍼머링크"></a></h2>
+<section id="id29">
+<h3>순서<a class="headerlink" href="#id29" title="이 제목에 대한 퍼머링크"></a></h3>
+<section id="id30">
+<h4>1. 컴포넌트 작성<a class="headerlink" href="#id30" title="이 제목에 대한 퍼머링크"></a></h4>
+<p>컴포넌트에서 사용할 소스코드 작성, 다른 컴포넌트로부터 데이터를 받기 위해서, 파일이나 명령행 인수를 사용해야 함</p>
+</section>
+<section id="id31">
+<h4>2. 컴포넌트 도커이미지 생성<a class="headerlink" href="#id31" title="이 제목에 대한 퍼머링크"></a></h4>
+</section>
+<section id="id32">
+<h4>3. 컴포넌트 만들기 - 컴포넌트 빌드<a class="headerlink" href="#id32" title="이 제목에 대한 퍼머링크"></a></h4>
+<p>컴포넌트의 데이터 모델을 정의하기 위해서 YAML 형식의 파일을 작성</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">Kubeflow</span> <span class="n">Pipelines</span> <span class="n">DSL을</span> <span class="n">사용하여</span> <span class="n">컴포넌트</span> <span class="n">함수</span> <span class="p">(</span><span class="n">ContainerOp</span><span class="p">)</span><span class="n">를</span> <span class="n">작성한다</span><span class="o">.</span>
+
+<span class="mf">2.</span> <span class="n">image</span> <span class="n">파라미터에</span> <span class="n">컴포넌트에서</span> <span class="n">사용하는</span><span class="o">/</span><span class="n">생성한</span> <span class="n">컨테이너</span> <span class="n">이미지를</span> <span class="n">입력한다</span><span class="o">.</span>
+
+<span class="mf">3.</span> <span class="n">컴포넌트</span> <span class="n">함수는</span> <span class="n">kfp</span><span class="o">.</span><span class="n">dsl</span><span class="o">.</span><span class="n">ContainerOp를</span> <span class="n">리턴한다</span><span class="p">(</span><span class="n">선택적으로</span> <span class="n">kfp</span><span class="o">.</span><span class="n">dsl</span><span class="o">.</span><span class="n">component</span> <span class="n">라는</span> <span class="n">데코레이터를</span> <span class="n">사용하여</span> <span class="n">DSL</span> <span class="n">컴파일러에서</span> <span class="n">정적</span> <span class="n">타입</span> <span class="n">검사가</span> <span class="n">가능</span><span class="p">)</span> <span class="p">:</span> <span class="n">파이프라인</span> <span class="n">스탭</span> <span class="n">생성</span>
+
+<span class="o">*</span> <span class="n">ContainerOp</span> <span class="p">:</span> <span class="n">컨테이너</span> <span class="n">이미지로</span> <span class="n">구현된</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">작업</span> <span class="p">(</span><span class="n">op</span><span class="p">)</span><span class="n">을</span> <span class="n">나타냄</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">dsl</span><span class="o">.</span><span class="n">component</span> <span class="p">:</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">구성</span> <span class="n">요소를</span> <span class="n">반환하는</span> <span class="n">DSL</span> <span class="n">함수의</span> <span class="n">데코레이터</span><span class="n">독립적으로</span> <span class="n">수행가능한</span> <span class="n">Component</span><span class="p">(</span><span class="n">container</span> <span class="n">형태</span><span class="p">)</span><span class="n">로</span> <span class="n">패키징</span>
+</pre></div>
+</div>
+</section>
+<section id="id33">
+<h4>4. 파이프라인 빌드<a class="headerlink" href="#id33" title="이 제목에 대한 퍼머링크"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">Kubeflow</span> <span class="n">Pipelines</span> <span class="n">DSL을</span> <span class="n">사용하여</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">함수를</span> <span class="n">작성한다</span><span class="o">.</span>
+
+<span class="mf">2.</span> <span class="n">파이프</span> <span class="n">라인을</span> <span class="n">정의하는</span> <span class="n">함수에</span> <span class="n">사용할</span> <span class="n">컴포넌트들을</span> <span class="n">추가한다</span><span class="o">.</span>
+
+<span class="mf">3.</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">함수에서</span> <span class="n">파이프</span> <span class="n">라인을</span> <span class="n">빌드하기</span> <span class="n">위해서</span> <span class="n">kfp</span><span class="o">.</span><span class="n">dsl</span><span class="o">.</span><span class="n">pipeline</span> <span class="n">데코레이터를</span> <span class="n">사용합니다</span><span class="o">.</span> 
+<span class="p">(</span><span class="n">데코레이터를</span> <span class="n">사용하려면</span> <span class="nd">@kfp</span><span class="o">.</span><span class="n">dsl</span><span class="o">.</span><span class="n">pipeline</span> <span class="n">어노테이션을</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">함수에</span> <span class="n">추가</span> <span class="n">하면</span> <span class="n">됩니다</span><span class="o">.</span><span class="p">)</span>
+
+
+<span class="o">*</span> <span class="n">kfp</span><span class="o">.</span><span class="n">dsl</span><span class="o">.</span><span class="n">pipeline</span><span class="p">:</span> <span class="n">파이프</span> <span class="n">라인을</span> <span class="n">빌드하여</span> <span class="n">반환하는</span> <span class="n">Python</span> <span class="n">함수의</span> <span class="n">데코레이터</span>
+</pre></div>
+</div>
+</section>
+<section id="id34">
+<h4>5. 파이프라인 컴파일 후 업로드<a class="headerlink" href="#id34" title="이 제목에 대한 퍼머링크"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">파이프</span> <span class="n">라인을</span> <span class="n">컴파일하여</span> <span class="n">압축</span> <span class="n">된</span> <span class="n">YAML</span> <span class="n">파일을</span> <span class="n">생성한다</span><span class="o">.</span> 
+<span class="mf">2.</span> <span class="n">YAML</span> <span class="n">파일에는</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">실행을</span> <span class="n">위한</span> <span class="n">쿠버네티스</span> <span class="n">리소스들이</span> <span class="n">정의되어</span> <span class="n">있습니다</span><span class="o">.</span> <span class="n">kfp</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">Compiler</span><span class="o">.</span><span class="n">compile</span> <span class="n">메소드를</span> <span class="n">사용하여</span> <span class="n">컴파일</span> 
+<span class="mf">3.</span> <span class="n">Kubeflow</span> <span class="n">Pipelines</span> <span class="n">SDK</span> <span class="n">를</span> <span class="n">사용하여</span> <span class="n">파이프라인을</span> <span class="n">업로드하고</span> <span class="n">실행한다</span><span class="o">.</span>
+
+<span class="o">*</span> <span class="n">kfp</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">Compiler</span><span class="o">.</span><span class="n">compile</span>  <span class="p">:</span> <span class="n">k8s</span> <span class="n">Pipelines</span> <span class="n">service가</span> <span class="n">가능하게</span> <span class="n">Python</span> <span class="n">DSL</span> <span class="n">Code를</span> <span class="n">YAML형식으로</span> <span class="n">변환</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id35">
+<h3>파이프라인 패턴<a class="headerlink" href="#id35" title="이 제목에 대한 퍼머링크"></a></h3>
+<ol class="arabic simple">
+<li><p>Creating components within your application code</p></li>
+<li><p>Creating components from existing application code</p></li>
+<li><p>Using prebuilt, reusable components in your pipeline</p></li>
+</ol>
+</section>
+</section>
+</section>
 <section id="appendix">
 <h1>Appendix<a class="headerlink" href="#appendix" title="이 제목에 대한 퍼머링크"></a></h1>
 <section id="mlflow">
@@ -586,8 +852,8 @@ kubectl config delete-context my-cluster-context
 </ul>
 </section>
 </section>
-<section id="id26">
-<h2><a class="headerlink" href="#id26" title="이 제목에 대한 퍼머링크"></a></h2>
+<section id="id36">
+<h2><a class="headerlink" href="#id36" title="이 제목에 대한 퍼머링크"></a></h2>
 </section>
 </section>
 <section id="reference">
