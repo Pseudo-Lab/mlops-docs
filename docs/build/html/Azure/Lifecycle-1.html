@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLOps Lifecycle 1 &mdash; 정리하며 배우는 MLOps 1.0.0 문서</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="MLOps Lifecycle 2" href="Lifecycle-2.html" />
+    <link rel="prev" title="Motivation for MLOps" href="MotivationForMLops.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 정리하며 배우는 MLOps
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Azure:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="MotivationForMLops.html">Motivation for MLOps</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MLOps Lifecycle 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">문제 정의</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">데이터 확보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">데이터셋 탐색 및 가공</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">데이터 검증</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Lifecycle-2.html">MLOps Lifecycle 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lifecycle-3.html">MLOps Lifecycle 3</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Kubeflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Fairing.html">Fairing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Serving.html">Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Katib.html">Katib</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Practice:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Practice/Setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Practice/Katib.html">Katib</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Archiving:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Archiving/Archiving.html">Archiving</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/Ref.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">정리하며 배우는 MLOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MLOps Lifecycle 1</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Azure/Lifecycle-1.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mlops-lifecycle-1">
+<h1>MLOps Lifecycle 1<a class="headerlink" href="#mlops-lifecycle-1" title="이 표제에 대한 퍼머링크"></a></h1>
+<section id="id1">
+<h2>문제 정의<a class="headerlink" href="#id1" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>풀어야 하는 문제 정의를 먼저 해야 함</p></li>
+<li><p>문제를 해결하기 위해 데이터를 준비하고 이러한 작업들이 실제로 비즈니스 가치를 창출할 수 있어야 함</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>데이터 확보<a class="headerlink" href="#id2" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>문제 해결을 위한 데이터 확보 프로세스</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">데이터</span> <span class="n">확보</span> 
+<span class="mf">2.</span> <span class="n">데이터</span> <span class="n">수집</span>  
+<span class="mf">3.</span> <span class="n">데이터</span> <span class="n">연계</span> <span class="n">과정</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>고정되어있지 않고 변화하는 데이터셋의 경우 버전 관리 및 공유가 필수적임</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>데이터셋 탐색 및 가공<a class="headerlink" href="#id3" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>데이터가 어떻게 분포해있는지 확인하는 단계</p></li>
+<li><p>데이터셋 요약 및 시각화를 이용한 탐색이 필요함 (분포 확인, 이상치 및 결측치 확인, 시각화)</p></li>
+<li><p>이미지 분류와 같이 데이터에 대한 레이블이 필요할 경우 태그하는 과정이 필요</p></li>
+<li><p>모델 학습, 통계 분석을 통해 피처 중 중요한 것과 아닌 것을 파악</p></li>
+<li><p>데이터의 패턴과 분포를 통해 피처 간 연관성 확인</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>데이터 검증<a class="headerlink" href="#id4" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>데이터 품질관리 기반인 검증 단계</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">테이블</span> <span class="n">별</span> <span class="n">건수</span> <span class="n">검증</span>
+<span class="mf">2.</span> <span class="n">코드</span> <span class="n">검증</span>
+<span class="mf">3.</span> <span class="n">무결성</span> <span class="n">검증</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>검증 요건에 따라 설계 후 검증 쿼리 개발, 검증 결과 모니터링 후 피드백하는 프로세스</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="MotivationForMLops.html" class="btn btn-neutral float-left" title="Motivation for MLOps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Lifecycle-2.html" class="btn btn-neutral float-right" title="MLOps Lifecycle 2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 저작권 2022, 정리하며 배우는 MLOps 5기 스터디 팀.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

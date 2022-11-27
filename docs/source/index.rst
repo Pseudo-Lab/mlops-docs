@@ -6,13 +6,46 @@
 정리하며 배우는 MLOps
 =================================
 
-`<https://www.notion.so/chanrankim/MLOps-c116fa04c8b547b6b88c49b6d16204ad/>`_
+Notion : `<https://www.notion.so/chanrankim/MLOps-c116fa04c8b547b6b88c49b6d16204ad/>`_
+
+Github : `<https://github.com/Pseudo-Lab/mlops-docs>`_
 
 =================================
 
 .. toctree::
+   :maxdepth: 4
+   :caption: Azure:
+
+   Azure/MotivationForMLops.md
+   Azure/Lifecycle-1.md
+   Azure/Lifecycle-2.md
+   Azure/Lifecycle-3.md
+
+.. toctree::
+   :maxdepth: 5
+   :caption: Kubeflow:
+
+   Kubeflow/Intro.md
+   Kubeflow/Pipeline.md
+   Kubeflow/Fairing.md
+   Kubeflow/Serving.md
+   Kubeflow/Katib.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Practice:
+
+   Practice/Setup.md
+   Practice/Katib.md
+
+.. toctree::
    :maxdepth: 1
-   :caption: Contents:
+   :caption: Archiving:
 
-   main
+   Archiving/Archiving.md
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Reference:
+
+   Reference/Ref.md

@@ -18,8 +18,7 @@
         <script src="_static/translations.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="색인" href="genindex.html" />
-    <link rel="search" title="검색" href="search.html" />
-    <link rel="prev" title="정리하며 배우는 MLOps" href="index.html" /> 
+    <link rel="search" title="검색" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,27 +36,33 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Chapter 1. Motivation for MLOps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ml">ML 생애주기</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#devops-vs-mlops">DevOps vs MLOps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mlops">MLOps의 이점</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">현업 관점</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#it">IT/개발 부서</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">데이터 전문가</a></li>
+              <p class="caption"><span class="caption-text">Azure:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Azure/MotivationForMLops.html">Motivation for MLOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Azure/Lifecycle-1.html">MLOps Lifecycle 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Azure/Lifecycle-2.html">MLOps Lifecycle 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Azure/Lifecycle-3.html">MLOps Lifecycle 3</a></li>
 </ul>
-</li>
+<p class="caption"><span class="caption-text">Kubeflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Kubeflow/Intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kubeflow/Pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kubeflow/Fairing.html">Fairing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kubeflow/Serving.html">Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kubeflow/Katib.html">Katib</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#chapter-2-mlops-lifecycle-1">Chapter 2. MLOps Lifecycle 1 : 데이터 준비</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id3">문제 정의</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">데이터 확보</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">데이터셋 탐색 및 가공</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">데이터 검증</a></li>
+<p class="caption"><span class="caption-text">Practice:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Practice/Setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Practice/Katib.html">Katib</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#reference">Reference</a></li>
+<p class="caption"><span class="caption-text">Archiving:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Archiving/Archiving.html">Archiving</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Reference/Ref.html">Reference</a></li>
 </ul>
 
         </div>
@@ -183,6 +188,671 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 </ul>
 </section>
 </section>
+<section id="chapter-3-mlops-lifecycle-2">
+<h1>Chapter 3. MLOps Lifecycle 2 : 실험 학습<a class="headerlink" href="#chapter-3-mlops-lifecycle-2" title="이 표제에 대한 퍼머링크"></a></h1>
+<section id="id7">
+<h2>실험, 모델 학습/최적화/비교평가<a class="headerlink" href="#id7" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>ML Lifecycle에서 <code class="docutils literal notranslate"><span class="pre">실험/학습</span></code> 파트</p></li>
+<li><p>데이터 가공 및 검증 파트가 데이터 준비 파트와 겹침</p>
+<ul>
+<li><p>데이터 가공 결과에 따라 모델이 변경되기도 함</p></li>
+<li><p>모델 성능에 데이터가 직접적인 영향을 미침</p></li>
+</ul>
+</li>
+</ul>
+<p>-&gt; 대규모 데이터를 대용량 클러스터에서 처리하는 것도 이 과정에 포함</p>
+<ul class="simple">
+<li><p>모델은 아래 입력 조건에 따라 결정됨</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">-</span> <span class="n">데이터</span>
+    <span class="o">-</span> <span class="n">학습</span> <span class="n">알고리즘</span>
+    <span class="o">-</span> <span class="n">하이퍼파라미터</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>입력 조건들을 바꿔가며 최적의 모델을 찾아가는 과정을 실험이라 부름</p></li>
+<li><p>이러한 반복적인 과정을 보다 쉽게 관리하고자 함</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>실험 추적관리<a class="headerlink" href="#id8" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">실험</span> <span class="pre">실행</span></code>: 위 3가지 입력(데이터, 학습 알고리즘, 하이퍼 파라미터)으로 하나의 실험을 수행</p></li>
+<li><p>위 실험과정에서 다양한 산출물들(입력 조건, 모델, 실험이력 등)이 발생하는데, 이를 체계적으로 관리하는 것이 중요함</p></li>
+<li><p>각 실험에 대해 입력값을 관리 + 산출된 모델의 메타 정보 관리</p></li>
+<li><p>애저에서는 실험별로 사용된 데이터 &amp; 모델의 버전 관리 &amp;  성능 확인 &amp; 서비스로 배포된 모델 추적 등의 기능을 제공함</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2>자동화된 ML<a class="headerlink" href="#id9" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>위 과정을 자동화하기 위한 도구(애저의 기능 이름인 듯, 일반적으로 Hyperparameter Optimization)</p></li>
+<li><p>높은 성능의 모델을 효율적으로 찾으려면?</p></li>
+<li><p>입력 조건에 따른 성능을 예측하고, 성능이 좋을 것으로 예상되는 입력 조건으로 다음 실험을 진행 &amp; 이 과정을 반복 수행</p></li>
+<li><p>애저에서는 이 작업을 수행할 때 다수의 모델이 실행되고 앙상블도 실행됨. 기본적인 성능 지표, 모델을 만들기위한 과정도 로그로 저장됨. 스냅샷 기능은 당시 실행한 py 파일 저장해둠.</p></li>
+</ul>
+</section>
+</section>
+<section id="chapter-4-mlops-lifecycle-k8s-kubeflow">
+<h1>Chapter 4. MLOps Lifecycle : 모델 검증 및 배포, 서빙 / k8s, kubeflow 기본<a class="headerlink" href="#chapter-4-mlops-lifecycle-k8s-kubeflow" title="이 표제에 대한 퍼머링크"></a></h1>
+<section id="id10">
+<h2>모델의 검증<a class="headerlink" href="#id10" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>예측 성능</p>
+<ul>
+<li><p>모델의 예측값이 실제값에 얼마나 가까운지</p></li>
+<li><p>얼마나 잘 일반화(Generalized)되는지</p></li>
+<li><p>DS가 관심을 두는 부분</p></li>
+</ul>
+</li>
+<li><p>처리 성능</p>
+<ul>
+<li><p>모델이 예측값을 계산해내는데 소요되는 시간, 사용하는 컴퓨팅 자원</p></li>
+<li><p>안정적으로 얻을 수 있는 추론 성능</p></li>
+<li><p>SWE가 관심을 두는 부분</p></li>
+<li><p>서비스가 얼마나 안정적으로 되고 있는지 파악할 수 있는 요소(처리 시간, 처리량, 실패 유형 등)</p></li>
+<li><p>애저에서는 어플리케이션 인사이트 기능을 이용함. 코드에서 발생하는 모든 로그 정보가 한 곳에서 통합 관리됨</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mlops-lifecycle-3">
+<h2>MLOps Lifecycle 3 : 모델 해석<a class="headerlink" href="#mlops-lifecycle-3" title="이 표제에 대한 퍼머링크"></a></h2>
+<section id="id11">
+<h3>모델 해석의 필요성<a class="headerlink" href="#id11" title="이 표제에 대한 퍼머링크"></a></h3>
+<p><img alt="week4_1" src="_images/mlops_week4_1.png" /></p>
+<ul class="simple">
+<li><p>대부분은 Black Box Model이다.</p></li>
+<li><p>정확도 만으로 모델의 성능을 평가할 수 없다.</p></li>
+<li><p>모델이 예측을 잘하는지 객관적 평가, 성능지표가 필요하다</p></li>
+</ul>
+</section>
+<section id="id12">
+<h3>모델 해석 분류 기준<a class="headerlink" href="#id12" title="이 표제에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Intrinsic</span> <span class="pre">vs</span> <span class="pre">Post-hoc</span></code> : 모델 자체로 해석 여부 가능한지, 아니라면 해석을 위한 새로운 모델링</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Model-specific</span> <span class="pre">vs</span> <span class="pre">Model-agnostic</span></code> : 특정 모델에만 적용되는지</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Global</span> <span class="pre">vs</span> <span class="pre">Local</span></code> : 데이터에 따른 모델의 범위</p></li>
+</ul>
+</section>
+<section id="id13">
+<h3>모델 해석 방법<a class="headerlink" href="#id13" title="이 표제에 대한 퍼머링크"></a></h3>
+<p><img alt="week4_2" src="_images/mlops_week4_2.png" /></p>
+</section>
+</section>
+<section id="mlops-lifecycle-4">
+<h2>MLOps Lifecycle 4 : 모델 배포 및 서빙<a class="headerlink" href="#mlops-lifecycle-4" title="이 표제에 대한 퍼머링크"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">Serving</span></code>이란 다른 <code class="docutils literal notranslate"><span class="pre">애플리케이션에서</span> <span class="pre">ML</span> <span class="pre">모델을</span> <span class="pre">사용할</span> <span class="pre">수</span> <span class="pre">있도록</span> <span class="pre">모델을</span> <span class="pre">배포</span></code>하거나, <code class="docutils literal notranslate"><span class="pre">모델</span> <span class="pre">API를</span> <span class="pre">제공</span></code>하는 것을 의미</p>
+<p><img alt="week4_3" src="_images/mlops_week4_3.png" /></p>
+<section id="id14">
+<h3>모델 모니터링<a class="headerlink" href="#id14" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>서빙 단계에서는 모니터링의 기능을 제공하여 모델에 대한 성능을 주기적으로 확인해야 함</p>
+<section id="id15">
+<h4>모델 성능 하락 원인<a class="headerlink" href="#id15" title="이 표제에 대한 퍼머링크"></a></h4>
+<ul class="simple">
+<li><p>Data Drift: 데이터의 통계적 변형</p></li>
+<li><p>Schema Drift: 데이터 스키마 변형</p></li>
+<li><p>Data Skew: 데이터의 불균형</p></li>
+<li><p>Concept Drift: 비즈니스 목적의 변형</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="k8s-kubeflow">
+<h2>k8s, kubeflow 기본<a class="headerlink" href="#k8s-kubeflow" title="이 표제에 대한 퍼머링크"></a></h2>
+<section id="k8s">
+<h3>k8s<a class="headerlink" href="#k8s" title="이 표제에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>서비스 디스커버리와 로드 밸런싱 : DNS 이름을 사용하거나 자체 IP 주소를 사용하여 컨테이너를 노출</p></li>
+<li><p>스토리지 오케스트레이션 : 로컬 저장소, 공용 클라우드 공급자 등과 같이 원하는 저장소 시스템을 자동으로 탑재</p></li>
+<li><p>자동화된 롤아웃과 롤백 : 원하는 상태를 서술하고 현재 상태를 원하는 상태로 설정한 속도에 따라 변경 가능</p></li>
+<li><p>자동화된 빈 패킹 : 각 컨테이너가 필요로 하는 CPU와 메모리(RAM)를 제공</p></li>
+<li><p>자동화된 복구(self-healing) : 실패한 컨테이너를 다시 시작하고, 컨테이너를 교체</p></li>
+<li><p>시크릿과 구성 관리 : 암호, OAuth 토큰 및 SSH 키와 같은 중요한 정보를 저장하고 관리</p></li>
+</ul>
+</section>
+<section id="id16">
+<h3>k8s 클러스터 구조<a class="headerlink" href="#id16" title="이 표제에 대한 퍼머링크"></a></h3>
+<p><img alt="week4_4" src="_images/mlops_week4_4.png" /></p>
+<ul class="simple">
+<li><p>쿠버네티스 아키텍처에서 클러스터(Cluster)란 컨테이너 형태의 애플리케이션을 호스팅하는 물리/가상 환경의 노드들로 이루어진 집합</p></li>
+<li><p>Node는 하나의 가상머신을 의미합니다.
+쿠버네티스는 컨테이너화 된 애플리케이션을 실행하는 Worker Node와 그러한 Worker Node를 관리하는 Master Node로 구성됩니다.</p></li>
+</ul>
+</section>
+<section id="master-worker-node">
+<h3>Master / Worker Node<a class="headerlink" href="#master-worker-node" title="이 표제에 대한 퍼머링크"></a></h3>
+<p><img alt="week4_5" src="_images/mlops_week4_5.png" /></p>
+<section id="master-node">
+<h4>Master Node<a class="headerlink" href="#master-node" title="이 표제에 대한 퍼머링크"></a></h4>
+<p><img alt="masternode" src="_images/masternode.png" /></p>
+</section>
+<section id="worker-node">
+<h4>Worker Node<a class="headerlink" href="#worker-node" title="이 표제에 대한 퍼머링크"></a></h4>
+<p><img alt="workernode" src="_images/workernode.png" /></p>
+</section>
+</section>
+<section id="kubeflow">
+<h3>Kubeflow<a class="headerlink" href="#kubeflow" title="이 표제에 대한 퍼머링크"></a></h3>
+<p><img alt="kubeflow" src="_images/mlops_week4_6.png" /></p>
+<p><img alt="kubeflowcomponent" src="_images/kubeflowcomponent.png" /></p>
+</section>
+<section id="kubeflow-workflow">
+<h3>Kubeflow workflow<a class="headerlink" href="#kubeflow-workflow" title="이 표제에 대한 퍼머링크"></a></h3>
+<p><img alt="kubeflowcomponent" src="_images/exflow.png" />
+<img alt="kubeflowcomponent" src="_images/productionflow.png" /></p>
+</section>
+</section>
+</section>
+<section id="chapter-5-k8s-kubeflow">
+<h1>Chapter 5. k8s, kubeflow 입문<a class="headerlink" href="#chapter-5-k8s-kubeflow" title="이 표제에 대한 퍼머링크"></a></h1>
+<section id="devops">
+<h2>DevOps<a class="headerlink" href="#devops" title="이 표제에 대한 퍼머링크"></a></h2>
+<ol class="arabic simple">
+<li><p>등장배경 : 개발팀과 운영팀의 분리로 인한 문제 발생
+조직간 원활한 소통의 어려움 &gt; 서비스 품질 저하</p></li>
+<li><p>정의 :
+개발팀과 운영팀의 협업으로 전체 Life Cycle을 함께 관리하자는 철학 또는 운동
+개발팀과 IT팀이 더 빠르고 안정적으로 SW를 빌드 &amp; 릴리즈 할 수 있도록
+두 팀간의 프로세스를 자동화하는 일련의 과정</p></li>
+<li><p>CI / CD :
+CI: Continuous Integration
+CD: Continuous Delivery and Continuous Deployment</p></li>
+</ol>
+</section>
+<section id="id17">
+<h2>MLOps<a class="headerlink" href="#id17" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>ML팀과 운영팀의 문제를 해결하기 위한 방법 e.g. Data Drift, Schema Drift, Data Skew, Concept Drift…</p></li>
+</ul>
+<section id="devops-mlops">
+<h3>DevOps &amp; MLOps<a class="headerlink" href="#devops-mlops" title="이 표제에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>DevOps: 개발팀에서 개발한 기능이 정상적으로 배포될 수 있는지 확인</p></li>
+<li><p>MLOps:    ML팀에서 개발한 모델이 정상적으로 배포될 수 있는지 확인</p></li>
+</ul>
+<p>최근에는 ML팀이 직접 서비스를 운영할 수 있게 도와주는 과정까지 포함</p>
+</section>
+</section>
+<section id="id18">
+<h2>k8s<a class="headerlink" href="#id18" title="이 표제에 대한 퍼머링크"></a></h2>
+<p>다수의 컨테이너를 운영하기 위한 Container Orchestration System</p>
+<section id="id19">
+<h3>구성 모듈<a class="headerlink" href="#id19" title="이 표제에 대한 퍼머링크"></a></h3>
+<ol class="arabic simple">
+<li><p>Node : Kubernetes의 hardware 요소 중 가장 작은 단위</p></li>
+<li><p>Cluster : 여러 대의 Node를 모아서 하나의 Cluster로 구성함 ,K8s에서는 각 Node의 상태를 고려하여 배포할 프로그램을 유연하게 관리함</p></li>
+<li><p>Persistent Volume : Cluster에 배포된 application은 container로 실행되므로 내부에 저장된 데이터는 휘발될 수 있음 Local 또는 cloud storage를 cluster에 mount한 개념</p></li>
+<li><p>Pods : K8s의 기본 실행 단위, K8s는 container를 직접 실행하지 않고 pod이란 형태로 감싸서 실행</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Pod</span> <span class="n">내의</span> <span class="n">container</span> <span class="n">끼리는</span> <span class="n">동일한</span> <span class="n">자원과</span> <span class="n">local</span> <span class="n">network를</span> <span class="n">공유</span>
+<span class="n">Load</span> <span class="n">balancing</span> <span class="o">&amp;</span> <span class="n">Failure</span> <span class="n">resistance</span><span class="p">:</span> <span class="n">Pod</span> <span class="n">단위로</span> <span class="n">서비스의</span> <span class="n">사본을</span> <span class="n">여러</span> <span class="n">개</span> <span class="n">실행하여</span> <span class="n">부하를</span> <span class="n">분담하거나</span><span class="p">,</span> <span class="n">서비스가</span> <span class="n">중단되는</span> <span class="n">것을</span> <span class="n">방지</span>
+<span class="n">Scaling</span> <span class="n">up</span> <span class="o">&amp;</span> <span class="n">down의</span> <span class="n">단위이므로</span> <span class="n">Pod</span> <span class="n">내에</span> <span class="n">container</span> <span class="n">수를</span> <span class="n">최소화할</span> <span class="n">것을</span> <span class="n">권장</span><span class="p">(</span><span class="n">side</span><span class="o">-</span><span class="n">cars</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Deployments
+Pod만으로도 app container 실행 가능, 그러나 관리를 쉽게 하기 위해 deployment라는 레이어를 한 층 더 쌓아서 관리</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Deployment는</span> <span class="n">몇</span> <span class="n">개의</span> <span class="n">Pod을</span> <span class="n">항상</span> <span class="n">띄워둘</span> <span class="n">것인지</span> <span class="n">선언하고</span><span class="p">,</span>
+<span class="n">control</span> <span class="n">plane에서는</span> <span class="n">여기서</span> <span class="n">선언된</span> <span class="n">개수를</span> <span class="n">유지하도록</span> <span class="n">조절함</span>
+<span class="n">Pod을</span> <span class="n">어느</span> <span class="n">Node에서</span> <span class="n">실행할</span> <span class="n">지는</span> <span class="n">control</span> <span class="n">plane의</span> <span class="n">scheduler가</span> <span class="n">결정</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Namespaces</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Virtual</span> <span class="n">sub</span><span class="o">-</span><span class="n">cluster</span><span class="p">,</span> <span class="n">Cluster를</span> <span class="n">가상의</span> <span class="n">클러스터로</span> <span class="n">쪼개어</span><span class="p">,</span> <span class="n">쪼개진</span> <span class="n">클러스터</span> <span class="n">간에는</span> <span class="n">서로</span> <span class="n">영향을</span> <span class="n">끼치지</span> <span class="n">않도록</span> <span class="n">함</span><span class="o">.</span>
+<span class="n">하나의</span> <span class="n">클러스터에서</span> <span class="n">여러</span> <span class="n">조직</span> <span class="n">또는</span> <span class="n">프로젝트가</span> <span class="n">작업할</span> <span class="n">경우</span>
+<span class="n">또는</span> <span class="n">개발</span> <span class="n">및</span> <span class="n">운영</span> <span class="n">단계</span><span class="p">(</span><span class="n">Development</span><span class="p">,</span> <span class="n">Testing</span><span class="p">,</span> <span class="n">Production</span><span class="p">)</span><span class="n">별로</span> <span class="n">구분할</span> <span class="n">필요가</span> <span class="n">있는</span> <span class="n">경우에</span> <span class="n">사용</span>
+<span class="n">K8s에서는</span> <span class="n">기본적으로</span> <span class="mi">4</span><span class="n">가지</span> <span class="n">namespace가</span> <span class="n">생성됨</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">kube</span><span class="o">-</span><span class="n">system</span><span class="p">,</span> <span class="n">kube</span><span class="o">-</span><span class="n">public</span><span class="p">,</span> <span class="n">kube</span><span class="o">-</span><span class="n">node</span><span class="o">-</span><span class="n">lease</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id20">
+<h3>노드 구조<a class="headerlink" href="#id20" title="이 표제에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>Master Node(Control Plane)</p>
+<ul>
+<li><p>Kube-API server</p></li>
+<li><p>Etcd</p></li>
+<li><p>Kube-Scheduler</p></li>
+<li><p>Kube-Controller-manager</p></li>
+<li><p>Cloud-Controller-manager</p></li>
+</ul>
+</li>
+<li><p>Worker Node</p>
+<ul>
+<li><p>Kubelet</p></li>
+<li><p>Kube-proxy</p></li>
+<li><p>Container runtime</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id21">
+<h3>웹 실습<a class="headerlink" href="#id21" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>웹 실습환경 https://labs.play-with-k8s.com/</p>
+</section>
+</section>
+<section id="id22">
+<h2>Kubeflow<a class="headerlink" href="#id22" title="이 표제에 대한 퍼머링크"></a></h2>
+<section id="id23">
+<h3>설치<a class="headerlink" href="#id23" title="이 표제에 대한 퍼머링크"></a></h3>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://kubernetes.io/ko/docs/tasks/tools/install-kubectl-linux/">kubectl</a>  : 생성한 클러스터에 요청을 보내기 위한 클라이언트 툴</p></li>
+<li><p><a class="reference external" href="https://minikube.sigs.k8s.io/docs/start/">minikube</a> : k8s 클러스터를 구성하기 하기 위해 사용되며 k8s에 비해 경량화되어 일반 데스크탑에서도 사용이 가능함</p></li>
+<li><p><a class="reference external" href="https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/kustomize_3.2.0_darwin_amd64">Kustomize</a> : k8s 네트워크에 커스텀된 Pod 모듈을 추가할 수 있음 Kubeflow를 설치하는데 사용됨</p></li>
+<li><p><a class="reference external" href="https://github.com/kubeflow/manifests">kubeflow</a> : Manifest를 활용하여 Kubeflow 네임스페이스 내 katib, 파이프라인을 설치할 수 있음</p></li>
+</ol>
+</section>
+<section id="id24">
+<h3>실행<a class="headerlink" href="#id24" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>UI만 실행하는 방법</p>
+<ol class="arabic simple">
+<li><p>minikube 클러스터(EX 이름 : mlops) 생성</p></li>
+<li><p>kubeflow Namespace 생성</p></li>
+<li><p>Istio / Cert-manager /Dex / OIDC AuthService  Namespace 생성</p></li>
+<li><p>Kubeflow 네임스페이스에 UI 설치 kustomize build apps/centraldashboard/upstream/overlays/istio | kubectl apply -f –</p></li>
+<li><p>UI 포트 열기</p></li>
+</ol>
+</section>
+<section id="id25">
+<h3>삭제<a class="headerlink" href="#id25" title="이 표제에 대한 퍼머링크"></a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># minikube</span>
+minikube stop
+minikube status
+minikube delete
+minikube delete -all
+
+<span class="c1"># kubectl</span>
+kubectl config get-clusters
+kubectl config delete-cluster my-cluster 
+kubectl config delete-context my-cluster-context
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="chapter-6-pipeline-1">
+<h1>Chapter 6. Pipeline - 1<a class="headerlink" href="#chapter-6-pipeline-1" title="이 표제에 대한 퍼머링크"></a></h1>
+<section id="pipeline">
+<h2>Pipeline<a class="headerlink" href="#pipeline" title="이 표제에 대한 퍼머링크"></a></h2>
+<p>Kubeflow Pipeline은 docker 컨테이너를 기반으로 확장 가능한 ML Workflow를 구축하고 개발하기 위한 플랫폼, Argo CD를 기반으로 만들어졌음</p>
+</section>
+<section id="argo-cd">
+<h2>Argo CD<a class="headerlink" href="#argo-cd" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>할당된 리소스에 어떤 컨테이너를 실행할지 컨트롤 하는 역할</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>사용자가 YAML DAG 명세를 작성하여 쿠버네티스 마스터에 요청을 합니다.</p></li>
+<li><p>쿠버네티스 API 서버가 명세를 받아 etcd DB에 workflow 정보를 저장합니다.</p></li>
+<li><p>Argo controller가 reconcilation loop에서 etcd DB의 새로운 정보를 확인하고 kube-scheduler에 필요한 Pod를 요청합니다.</p></li>
+<li><p>kube-scheduler는 Pod를 적절한 노드에 스케줄링합니다.</p></li>
+<li><p>Argo controller가 다음번 reconcilation loop에서 다음 dependency가 걸려 있는 Job을 요청합니다.</p></li>
+</ol>
+</section>
+<section id="kubeflow-pipeline">
+<h2>Kubeflow Pipeline 구성요소<a class="headerlink" href="#kubeflow-pipeline" title="이 표제에 대한 퍼머링크"></a></h2>
+<section id="kubeflow-ui">
+<h3>Kubeflow UI 웹 서버<a class="headerlink" href="#kubeflow-ui" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>Pipelines 웹 서버는 다양한 서비스에서 데이터를 수집하여 현재 실행중인 Pipelines 목록, Pipelines 실행 기록, data artifact 목록, 개별 Pipelines 실행에 대한 디버깅 정보, 개별 Pipelines 실행에 대한 실행 상태를 표시함</p>
+</section>
+<section id="python-sdk">
+<h3>Python SDK<a class="headerlink" href="#python-sdk" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>Kubeflow Pipelines 도메인 별 언어 (*DSL)를 사용하여 component를 생성하거나 Pipelines을 지정 (python code to .yaml)</p>
+</section>
+<section id="pipelines-service">
+<h3>Pipelines Service (중앙 제어)<a class="headerlink" href="#pipelines-service" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>Pipelines 서비스를 호출하여 정적 구성에서 실행되는 Pipelines 생성 요청, 실행 요청(쿠버네티스 리소스 준비 및 실행), 등록, Workflow 저장 기능 수행</p>
+</section>
+<section id="kubernetes">
+<h3>Kubernetes 리소스 (리소스 생성)<a class="headerlink" href="#kubernetes" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>Pipelines 서비스는 *Kubernetes API 서버를 호출하여 Pipelines을 실행하는 데 필요한 Kubernetes 리소스 (CRD)를 만듬</p>
+</section>
+<section id="job">
+<h3>오케스트레이션 컨트롤러 (컨테이너(Job) 실행)<a class="headerlink" href="#job" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>일련의 오케스트레이션 컨트롤러는 Pipelines을 완료하는데 필요한 컨테이너를 실행하며, 컨테이너는 가상 머신의 Kubernetes pod 내에서 실행됨</p>
+</section>
+<section id="pipeline-persistence-agent">
+<h3>Pipeline Persistence Agent<a class="headerlink" href="#pipeline-persistence-agent" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>파이프라인 서비스가 생성한 리소스를 추적하고 메타데이터 서비스의 리소스 상태를 기록 / 컨테이너 실행 추적</p>
+</section>
+<section id="kube-api-server">
+<h3>Kube API Server<a class="headerlink" href="#kube-api-server" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>API 서버는 최종 사용자, 클러스터의 다른 부분 그리고 외부 컴포넌트가 서로 통신할 수 있도록 HTTP API를 제공한다. 쿠버네티스 API를 사용하면 쿠버네티스의 API 오브젝트(예: 파드(Pod), 네임스페이스(Namespace), 컨피그맵(ConfigMap) 그리고 이벤트(Event))를 질의(query)하고 조작</p>
+</section>
+<section id="metadata">
+<h3>Metadata<a class="headerlink" href="#metadata" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>Experimentation, Job, Pipelines 실행 및 모델 Evaluation.</p>
+</section>
+<section id="artifact">
+<h3>Artifact<a class="headerlink" href="#artifact" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>Kubeflow Pipelines는 Minio 서버 또는 Cloud Storage와 같은 Artifact 저장소에 Artifact를 저장</p>
+</section>
+</section>
+</section>
+<section id="chapter-7-pipeline-2">
+<h1>Chapter 7. Pipeline - 2<a class="headerlink" href="#chapter-7-pipeline-2" title="이 표제에 대한 퍼머링크"></a></h1>
+<ul class="simple">
+<li><p>Pipeline 구축과 개발 패턴에 대한 스터디</p></li>
+</ul>
+<section id="id26">
+<h2>설치 방법<a class="headerlink" href="#id26" title="이 표제에 대한 퍼머링크"></a></h2>
+<p><a class="reference external" href="https://www.manceps.com/articles/tutorial/how-to-install-kubeflow-on-various-operating-systems">참고</a></p>
+</section>
+<section id="kfp">
+<h2>KFP 용어<a class="headerlink" href="#kfp" title="이 표제에 대한 퍼머링크"></a></h2>
+<section id="component">
+<h3>Component<a class="headerlink" href="#component" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>특정 프로그램, entrypoint를 컨테이너 안에서 표현한 것(함수와 같이 input/output 존재, yaml 포맷으로 구성)</p>
+<ul class="simple">
+<li><p>Metadata : name, description</p></li>
+<li><p>Interface : Input / Output 정의</p></li>
+<li><p>Data passing : Input / Output의 Args(Command-line 또는 파일 경로)</p></li>
+</ul>
+</section>
+<section id="step">
+<h3>Step<a class="headerlink" href="#step" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>Pipeline의 Component 내 실행 단위 (컴포넌트 연결 표시)</p>
+</section>
+<section id="experiment">
+<h3>Experiment<a class="headerlink" href="#experiment" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>Pipeline이 실행되는 workspace (파이프라인은 Workspace 안에서 실행)</p>
+</section>
+<section id="run-and-recurring-run-experiment">
+<h3>Run and Recurring run (Experiment 내 포함)<a class="headerlink" href="#run-and-recurring-run-experiment" title="이 표제에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>Run : Pipeline의 Single execution (runtime graph, output artifact, log 포함)</p></li>
+<li><p>Recurring run : pipeline의 반복 실행 단위</p></li>
+</ul>
+</section>
+<section id="id27">
+<h3>Artifact<a class="headerlink" href="#id27" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>모델 Train과 test 결과 (log, model)</p>
+</section>
+<section id="dsl">
+<h3>DSL<a class="headerlink" href="#dsl" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>Python to yaml format</p>
+</section>
+</section>
+<section id="kfp-sdk">
+<h2>KFP SDK<a class="headerlink" href="#kfp-sdk" title="이 표제에 대한 퍼머링크"></a></h2>
+<p>KFP SDK : ML Workflow를 지정하고 실행하는데 사용할 수 있는 Python Package</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>목적</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>kfp.compiler</p></td>
+<td><p>파이프라인을 컴파일</p></td>
+<td><p>(YMAL 형식으로, Argo workflow 형태)</p></td>
+</tr>
+<tr class="row-odd"><td><p>kfp.components</p></td>
+<td><p>구성된 파이프라인 Load / 파이프라인 내 함수 호출</p></td>
+<td><p>파이프 라인과 interacting하기 위한 Class 및 Method를 포함</p></td>
+</tr>
+<tr class="row-even"><td><p>kfp.containers</p></td>
+<td><p>컴포넌트 컨테이너 이미지를 빌드</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>kfp.dsl</p></td>
+<td><p>파이프 라인 및 컴포넌트를 정의하고 상호작용</p></td>
+<td><p>파이프 라인 및 구성 요소를 정의하고 상호 작용하는 데 사용할 수 있는 DSL이 포함</p></td>
+</tr>
+<tr class="row-even"><td><p>kfp.client</p></td>
+<td><p>Pipeline 실행</p></td>
+<td><p>Kubeflow Pipelines를 위한 client libraries</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="kfp-cli-tool">
+<h2>KFP CLI Tool<a class="headerlink" href="#kfp-cli-tool" title="이 표제에 대한 퍼머링크"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>목적</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>kfp diagnose_me</p></td>
+<td><p>지정된 파라미터로 환경 진단</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">json :</span></code> 명령 실행 결과를 JSON으로 반환하도록 합니다. 별도로 설정하지 않으면, 결과는 사람이 읽을 수 있는 형식으로 반환됩니다. <code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">TEXT :</span></code> 대상 쿠버네티스 네임스페이스를 지정합니다. 별도로 설정하지 않으면, 모든 네임스페이스를 대상으로 합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p>kfp pipeline <COMMAND></p></td>
+<td><p>파이프 라인을 관리</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">get :</span></code> Kubeflow Pipelines 클러스터의 Kubeflow 파이프 라인에 대한 상세한 정보를 조회합니다. <code class="docutils literal notranslate"><span class="pre">list :</span></code> Kubeflow Pipelines 클러스터에 업로드 된 파이프 라인 목록을 조회 합니다. <code class="docutils literal notranslate"><span class="pre">upload :</span></code> Kubeflow Pipelines 클러스터에 파이프 라인을 업로드합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p>kfp run <COMMAND></p></td>
+<td><p>파이프 라인 실행</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">get</span> <span class="pre">:</span></code> 파이프 라인 실행의 상세한 정보를 조회합니다. <code class="docutils literal notranslate"><span class="pre">list :</span></code> 최근 실행한 파이프 라인 실행 목록을 조회 합니다 submit – 파이프 라인을 실행 시킵니다.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id28">
+<h2>컴포넌트 생성 실습<a class="headerlink" href="#id28" title="이 표제에 대한 퍼머링크"></a></h2>
+<section id="id29">
+<h3>순서<a class="headerlink" href="#id29" title="이 표제에 대한 퍼머링크"></a></h3>
+<section id="id30">
+<h4>1. 컴포넌트 작성<a class="headerlink" href="#id30" title="이 표제에 대한 퍼머링크"></a></h4>
+<p>컴포넌트에서 사용할 소스코드 작성, 다른 컴포넌트로부터 데이터를 받기 위해서, 파일이나 명령행 인수를 사용해야 함</p>
+</section>
+<section id="id31">
+<h4>2. 컴포넌트 도커이미지 생성<a class="headerlink" href="#id31" title="이 표제에 대한 퍼머링크"></a></h4>
+</section>
+<section id="id32">
+<h4>3. 컴포넌트 만들기 - 컴포넌트 빌드<a class="headerlink" href="#id32" title="이 표제에 대한 퍼머링크"></a></h4>
+<p>컴포넌트의 데이터 모델을 정의하기 위해서 YAML 형식의 파일을 작성</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">Kubeflow</span> <span class="n">Pipelines</span> <span class="n">DSL을</span> <span class="n">사용하여</span> <span class="n">컴포넌트</span> <span class="n">함수</span> <span class="p">(</span><span class="n">ContainerOp</span><span class="p">)</span><span class="n">를</span> <span class="n">작성한다</span><span class="o">.</span>
+
+<span class="mf">2.</span> <span class="n">image</span> <span class="n">파라미터에</span> <span class="n">컴포넌트에서</span> <span class="n">사용하는</span><span class="o">/</span><span class="n">생성한</span> <span class="n">컨테이너</span> <span class="n">이미지를</span> <span class="n">입력한다</span><span class="o">.</span>
+
+<span class="mf">3.</span> <span class="n">컴포넌트</span> <span class="n">함수는</span> <span class="n">kfp</span><span class="o">.</span><span class="n">dsl</span><span class="o">.</span><span class="n">ContainerOp를</span> <span class="n">리턴한다</span><span class="p">(</span><span class="n">선택적으로</span> <span class="n">kfp</span><span class="o">.</span><span class="n">dsl</span><span class="o">.</span><span class="n">component</span> <span class="n">라는</span> <span class="n">데코레이터를</span> <span class="n">사용하여</span> <span class="n">DSL</span> <span class="n">컴파일러에서</span> <span class="n">정적</span> <span class="n">타입</span> <span class="n">검사가</span> <span class="n">가능</span><span class="p">)</span> <span class="p">:</span> <span class="n">파이프라인</span> <span class="n">스탭</span> <span class="n">생성</span>
+
+<span class="o">*</span> <span class="n">ContainerOp</span> <span class="p">:</span> <span class="n">컨테이너</span> <span class="n">이미지로</span> <span class="n">구현된</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">작업</span> <span class="p">(</span><span class="n">op</span><span class="p">)</span><span class="n">을</span> <span class="n">나타냄</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">dsl</span><span class="o">.</span><span class="n">component</span> <span class="p">:</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">구성</span> <span class="n">요소를</span> <span class="n">반환하는</span> <span class="n">DSL</span> <span class="n">함수의</span> <span class="n">데코레이터</span><span class="n">독립적으로</span> <span class="n">수행가능한</span> <span class="n">Component</span><span class="p">(</span><span class="n">container</span> <span class="n">형태</span><span class="p">)</span><span class="n">로</span> <span class="n">패키징</span>
+</pre></div>
+</div>
+</section>
+<section id="id33">
+<h4>4. 파이프라인 빌드<a class="headerlink" href="#id33" title="이 표제에 대한 퍼머링크"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">Kubeflow</span> <span class="n">Pipelines</span> <span class="n">DSL을</span> <span class="n">사용하여</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">함수를</span> <span class="n">작성한다</span><span class="o">.</span>
+
+<span class="mf">2.</span> <span class="n">파이프</span> <span class="n">라인을</span> <span class="n">정의하는</span> <span class="n">함수에</span> <span class="n">사용할</span> <span class="n">컴포넌트들을</span> <span class="n">추가한다</span><span class="o">.</span>
+
+<span class="mf">3.</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">함수에서</span> <span class="n">파이프</span> <span class="n">라인을</span> <span class="n">빌드하기</span> <span class="n">위해서</span> <span class="n">kfp</span><span class="o">.</span><span class="n">dsl</span><span class="o">.</span><span class="n">pipeline</span> <span class="n">데코레이터를</span> <span class="n">사용합니다</span><span class="o">.</span> 
+<span class="p">(</span><span class="n">데코레이터를</span> <span class="n">사용하려면</span> <span class="nd">@kfp</span><span class="o">.</span><span class="n">dsl</span><span class="o">.</span><span class="n">pipeline</span> <span class="n">어노테이션을</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">함수에</span> <span class="n">추가</span> <span class="n">하면</span> <span class="n">됩니다</span><span class="o">.</span><span class="p">)</span>
+
+
+<span class="o">*</span> <span class="n">kfp</span><span class="o">.</span><span class="n">dsl</span><span class="o">.</span><span class="n">pipeline</span><span class="p">:</span> <span class="n">파이프</span> <span class="n">라인을</span> <span class="n">빌드하여</span> <span class="n">반환하는</span> <span class="n">Python</span> <span class="n">함수의</span> <span class="n">데코레이터</span>
+</pre></div>
+</div>
+</section>
+<section id="id34">
+<h4>5. 파이프라인 컴파일 후 업로드<a class="headerlink" href="#id34" title="이 표제에 대한 퍼머링크"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">파이프</span> <span class="n">라인을</span> <span class="n">컴파일하여</span> <span class="n">압축</span> <span class="n">된</span> <span class="n">YAML</span> <span class="n">파일을</span> <span class="n">생성한다</span><span class="o">.</span> 
+<span class="mf">2.</span> <span class="n">YAML</span> <span class="n">파일에는</span> <span class="n">파이프</span> <span class="n">라인</span> <span class="n">실행을</span> <span class="n">위한</span> <span class="n">쿠버네티스</span> <span class="n">리소스들이</span> <span class="n">정의되어</span> <span class="n">있습니다</span><span class="o">.</span> <span class="n">kfp</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">Compiler</span><span class="o">.</span><span class="n">compile</span> <span class="n">메소드를</span> <span class="n">사용하여</span> <span class="n">컴파일</span> 
+<span class="mf">3.</span> <span class="n">Kubeflow</span> <span class="n">Pipelines</span> <span class="n">SDK</span> <span class="n">를</span> <span class="n">사용하여</span> <span class="n">파이프라인을</span> <span class="n">업로드하고</span> <span class="n">실행한다</span><span class="o">.</span>
+
+<span class="o">*</span> <span class="n">kfp</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">Compiler</span><span class="o">.</span><span class="n">compile</span>  <span class="p">:</span> <span class="n">k8s</span> <span class="n">Pipelines</span> <span class="n">service가</span> <span class="n">가능하게</span> <span class="n">Python</span> <span class="n">DSL</span> <span class="n">Code를</span> <span class="n">YAML형식으로</span> <span class="n">변환</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id35">
+<h3>파이프라인 패턴<a class="headerlink" href="#id35" title="이 표제에 대한 퍼머링크"></a></h3>
+<ol class="arabic simple">
+<li><p>Creating components within your application code</p></li>
+<li><p>Creating components from existing application code</p></li>
+<li><p>Using prebuilt, reusable components in your pipeline</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="chapter-8-fairing-1">
+<h1>Chapter 8. Fairing - 1<a class="headerlink" href="#chapter-8-fairing-1" title="이 표제에 대한 퍼머링크"></a></h1>
+<section id="fairing">
+<h2>Fairing<a class="headerlink" href="#fairing" title="이 표제에 대한 퍼머링크"></a></h2>
+<p>Kubeflow fairing은 kubernetes 환경에서 모델 학습이나 배포를 위한 컨테이너 빌드, 모델을 학습, 모델 배포 과정을 단순화할 수 있는 python library임.</p>
+<blockquote>
+<div><p>로컬 환경에서 작성한 모델 학습 코드를 쿠버네티스 클러스터에서 실행하기 위해서는 작업환경과 학습코드가 포함된 도커 이미지를 빌드하고 쿠버네티스 클러스터에 띄워서 학습을 진행해야 한다. 뿐만 아니라 작업 환경에 따른 몇몇 작업을 해줘야 하는 경우도 있다.</p>
+</div></blockquote>
+<blockquote>
+<div><p>fairing api를 사용하면 위 과정을 python script나 jupyter notebook 내에서 코드 몇 줄로 간단히 해결할 수 있다.</p>
+</div></blockquote>
+</section>
+<section id="components-of-fairing">
+<h2>Components of fairing<a class="headerlink" href="#components-of-fairing" title="이 표제에 대한 퍼머링크"></a></h2>
+<p><img alt="components of fairing" src="_images/fairing_components.png" /></p>
+<section id="preprocessor">
+<h3>Preprocessor (전처리기)<a class="headerlink" href="#preprocessor" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>preprocessor는 fairing이 컨테이너 이미지를 만들때 이미지 생성에 필요한 정보를 정의하는 역할. 컨테이너 이미지에 어떤 파일을 포함시킬지 선택할 수 있고, 불필요한 파일은 제외시킬 수도 있으며 포함시킬 수 있는 파일의 종류는 다음과 같다.</p>
+<ul class="simple">
+<li><p>Python - 파이썬 스크립트를 통째로 포함시킬 수 있다.</p></li>
+<li><p>Function - 파이썬 스크립트 전체 대신 내가 원하는 특정 함수만 포함 시킬 수 있다.</p></li>
+<li><p>Notebook - ipynb 포맷의 쥬피터 노트북 파일을 포함시킬 수 있다. 이때 ipynb 파일에서 파이썬 코드가 아닌 부분을 제거해서 실행가능한 python 스크립트로 변환하여 포함 시킬 수 있고, python 코드가 아닌 주석과 이미지를 포함한 전체 파일을 포함시킬 수 도 있다. 후자의 경우 <a class="reference external" href="https://papermill.readthedocs.io/en/latest/">papermill</a> 이라는 library를 통해 노트북 파일이 실행된다.</p></li>
+</ul>
+</section>
+<section id="builder">
+<h3>Builder (생성자)<a class="headerlink" href="#builder" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>생성자는 컨테이너 이미지를 빌드하는 방법과 컨테이너 이미지를 저장할 위치 등을 정의하는 역할.</p>
+<ul class="simple">
+<li><p>append - 기존 컨테이너 이미지를 바탕으로 새 레이어를 추가하는 방법이다.
+기본 도커 이미지를 가져와서 새로 이미지를 작성하는게 아니라, 기존의 이미지에서 새롭게 추가된 부분만 이미지 레지스트리에 푸시하는 방법이라서 빌드하는데 시간이 상대적으로 적게 걸린다는 장점이 존재한다.  <a class="reference external" href="https://github.com/google/containerregistry">containerregistry</a> 라이브러리를 사용하기 때문에 로컬 도커 데몬 설치가 불필요하다.</p></li>
+<li><p>docker - 로컬 도커 데몬을 사용하여 컨테이너 이미지를 빌드하고 컨테이너 이미지 레지스트리에 푸시하는 고전적인 방식.</p></li>
+<li><p>cluster - 쿠버네티스 클러스터에서 학습 작업에 사용할 컨테이너 이미지를 빌드하고 컨테이너 이미지 레지스트리에 푸시하는 방식. 위의 docker와 차이는 로컬에서 빌드하냐 클러스터에서 빌드하냐의 차이가 존재하는 것 같음(?)</p></li>
+</ul>
+</section>
+<section id="deployer">
+<h3>Deployer (배포자)<a class="headerlink" href="#deployer" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>배포자는 생성자(builder)를 통해 생성된 이미지를 배포하고 실행할 위치를 지정한다. 그리고 해당 위치에 있는 클러스터에 작업을 배포하고 실행하는 역할을 한다.</p>
+<ul class="simple">
+<li><p>Job - 쿠버네티스 Job 리소스를 사용하여 학습 작업을 시작한다.</p></li>
+<li><p>TfJob, PyTorchJob, GCPJob - 배포하려는 코드가 tensorflow or pytorch 기반이거나, Job을 배포하려는 대상이 GCP(google cloud platform)라면 각 상황에 맞는 Job을 사용가능.</p></li>
+<li><p>Serving - 쿠버네티스의 deployment와 service를 사용하여, 추론(prediction)을 위한 엔드포인트를 서빙한다.</p></li>
+<li><p>KFServing (추후 공부 예정) - KFServing을 사용하여, 예측(prediction) 엔드포인트를 서빙한다.</p></li>
+</ul>
+</section>
+</section>
+<section id="how-to-install-fairing">
+<h2>How to install fairing?<a class="headerlink" href="#how-to-install-fairing" title="이 표제에 대한 퍼머링크"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">kubeflow</span><span class="o">-</span><span class="n">fairing</span>
+</pre></div>
+</div>
+</section>
+<section id="how-to-use-fairing-api">
+<h2>How to use fairing API<a class="headerlink" href="#how-to-use-fairing-api" title="이 표제에 대한 퍼머링크"></a></h2>
+<p>https://kubeflow-fairing.readthedocs.io/</p>
+<section id="fairing-config-module">
+<h3>Fairing config module<a class="headerlink" href="#fairing-config-module" title="이 표제에 대한 퍼머링크"></a></h3>
+<p>example code</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kubeflow</span> <span class="kn">import</span> <span class="n">fairing</span>
+
+<span class="n">fairing</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set_preprocessor</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;/home/andrew/workspace/k8s/train.py&quot;</span><span class="p">])</span>
+
+<span class="n">fairing</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set_builder</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;docker&#39;</span><span class="p">,</span> <span class="n">registry</span><span class="o">=</span><span class="s1">&#39;&lt;your-registry-name&gt;&#39;</span><span class="p">,</span> <span class="n">base_image</span><span class="o">=</span><span class="s1">&#39;tensorflow/tensorflow:1.13.1-py3&#39;</span><span class="p">)</span>
+
+<span class="n">fairing</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="trainjob-api">
+<h3>TrainJob API<a class="headerlink" href="#trainjob-api" title="이 표제에 대한 퍼머링크"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kubeflow</span> <span class="kn">import</span> <span class="n">fairing</span>
+<span class="kn">from</span> <span class="nn">kubeflow.fairing</span> <span class="kn">import</span> <span class="n">TrainJob</span>
+<span class="kn">from</span> <span class="nn">kubeflow.fairing.backends</span> <span class="kn">import</span> <span class="n">KubeflowGKEBackend</span>
+
+<span class="c1"># example 1. Executing a python file</span>
+
+<span class="o">%%</span><span class="n">writefile</span> <span class="n">train</span><span class="o">.</span><span class="n">py</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello world!&quot;</span><span class="p">)</span>
+
+<span class="n">job</span> <span class="o">=</span> <span class="n">TrainJob</span><span class="p">(</span><span class="s2">&quot;train.py&quot;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">KubeflowGKEBackend</span><span class="p">())</span>
+<span class="n">job</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+
+
+<span class="c1"># example 2. Executing a python function</span>
+
+<span class="k">def</span> <span class="nf">train</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;simple train job!&quot;</span><span class="p">)</span>
+
+<span class="n">job</span> <span class="o">=</span> <span class="n">TrainJob</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">KubeflowGKEBackend</span><span class="p">())</span>
+<span class="n">job</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+
+
+<span class="c1"># example 3. Executing a complete notebook</span>
+
+<span class="o">%%</span><span class="n">writefile</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">papermill</span>
+<span class="n">jupyter</span>
+
+<span class="n">job</span> <span class="o">=</span> <span class="n">TrainJob</span><span class="p">(</span><span class="s2">&quot;train.ipynb&quot;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">fairing</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">KubeflowGK</span><span class="p">(),</span> <span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;requirements.txt&quot;</span><span class="p">])</span>
+<span class="n">job</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="appendix">
+<h1>Appendix<a class="headerlink" href="#appendix" title="이 표제에 대한 퍼머링크"></a></h1>
+<section id="mlflow">
+<h2>MLFlow 예제<a class="headerlink" href="#mlflow" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://clarit7.github.io/mlflow_tutorial/">mlflow_tutorial</a></p></li>
+</ul>
+</section>
+<section id="mlops-level">
+<h2>MLOps Level<a class="headerlink" href="#mlops-level" title="이 표제에 대한 퍼머링크"></a></h2>
+<p>MLOps 레벨과 특징</p>
+<section id="level-0">
+<h3>Level 0<a class="headerlink" href="#level-0" title="이 표제에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>데이터 분석, 준비, 학습, 검증 모두 수동</p></li>
+<li><p>학습 편향 발생 가능성 증가</p></li>
+<li><p>CI/CD 없음 (간헐적인 출시일 경우)</p></li>
+<li><p>ML 시스템 배포가 아닌 예측 서비스</p></li>
+<li><p>성능 모니터링 부족</p></li>
+</ul>
+</section>
+<section id="level-1">
+<h3>Level 1<a class="headerlink" href="#level-1" title="이 표제에 대한 퍼머링크"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ML</span> <span class="n">파이프라인을</span> <span class="n">자동화하여</span> <span class="n">모델을</span> <span class="n">지속적으로</span> <span class="n">학습</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>학습 자동화 및 파이프라인 구축</p></li>
+<li><p>데이터 및 모델 유효성 검사</p></li>
+<li><p>특성 저장소</p></li>
+<li><p>메타데이터 관리</p></li>
+</ul>
+</section>
+<section id="level-2">
+<h3>Level 2<a class="headerlink" href="#level-2" title="이 표제에 대한 퍼머링크"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Level</span> <span class="mi">1</span><span class="n">에서</span> <span class="n">CI</span><span class="o">/</span><span class="n">CD면에서</span> <span class="n">집중적으로</span> <span class="n">강화된</span> <span class="n">시스템을</span> <span class="n">MLOps</span> <span class="n">Level</span> <span class="mi">2</span><span class="n">로</span> <span class="n">구분</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>소스 제어</p></li>
+<li><p>서비스 테스트 및 빌드</p></li>
+<li><p>배포 서비스</p></li>
+<li><p>모델 레지스트리</p></li>
+<li><p>특성 저장소, ML 메타데이터 저장소</p></li>
+<li><p>ML 파이프라인 조정자</p></li>
+</ul>
+</section>
+</section>
+<section id="id36">
+<h2><a class="headerlink" href="#id36" title="이 표제에 대한 퍼머링크"></a></h2>
+</section>
+</section>
 <section id="reference">
 <h1>Reference<a class="headerlink" href="#reference" title="이 표제에 대한 퍼머링크"></a></h1>
 <table class="colwidths-auto docutils align-default">
@@ -198,6 +868,45 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 <tr class="row-odd"><td><p>2</p></td>
 <td><p><a class="reference external" href="https://www.youtube.com/watch?v=zyGYnYZaUEk">ep2. ML 생애주기 1 - 데이터 준비</a></p></td>
 </tr>
+<tr class="row-even"><td><p>Appendix : MLOps Level</p></td>
+<td><p><a class="reference external" href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning?hl=ko">cloud.google</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p><a class="reference external" href="https://www.youtube.com/watch?v=zyGYnYZaUEk">ep3. ML 생애주기 2 - 실험 학습</a></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">ep3. ML 생애주기 2 - 실험 학습 정리</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">ep4. ML 생애주기 3 - 모델 해석</a></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">ep5. ML 생애주기 4 - 모델 배포 및 서빙</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">k8s</a></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tech.ktcloud.com/70?category=465864">kubeflow 구조</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">kubeflow</a></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://chacha95.github.io/2020-10-17-Docker_Kubernetes10/">kubeflow구성요소</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://learning-sarah.tistory.com/entry/Kubeflow-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C-Fairing?category=1010018">kubeflow구성요소</a></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://tildukim.notion.site/MLOps-101-ep3-ML-2-1afb61c6731549e6ae1726f3a5dfc1bc">kubeflow</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://devocean.sk.com/blog/techBoardDetail.do?ID=163645">kubeflow서빙</a></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://www.kubeflow.org/docs/">kubeflow공식문서</a></p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -205,9 +914,7 @@ ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="정리하며 배우는 MLOps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
+          <footer>
 
   <hr/>
 

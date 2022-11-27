@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motivation for MLOps &mdash; 정리하며 배우는 MLOps 1.0.0 문서</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="MLOps Lifecycle 1" href="Lifecycle-1.html" />
+    <link rel="prev" title="정리하며 배우는 MLOps" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 정리하며 배우는 MLOps
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Azure:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Motivation for MLOps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ml">ML 생애주기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#devops-vs-mlops">DevOps vs MLOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mlops">MLOps의 이점</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">현업 관점</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#it">IT/개발 부서</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">데이터 전문가</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Lifecycle-1.html">MLOps Lifecycle 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lifecycle-2.html">MLOps Lifecycle 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lifecycle-3.html">MLOps Lifecycle 3</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Kubeflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Fairing.html">Fairing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Serving.html">Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Katib.html">Katib</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Practice:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Practice/Setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Practice/Katib.html">Katib</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Archiving:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Archiving/Archiving.html">Archiving</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/Ref.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">정리하며 배우는 MLOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Motivation for MLOps</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Azure/MotivationForMLops.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="motivation-for-mlops">
+<h1>Motivation for MLOps<a class="headerlink" href="#motivation-for-mlops" title="이 표제에 대한 퍼머링크"></a></h1>
+<section id="ml">
+<h2>ML 생애주기<a class="headerlink" href="#ml" title="이 표제에 대한 퍼머링크"></a></h2>
+<p>우리가 Machine learning(ML)을 이용한 솔루션을 생각할 때 흔히 하는 착각이 있다.
+그건 바로 무조건적으로 좋은 모델을 만들어서 사용하면 되는것 아닌가? 하는 생각이다.</p>
+<p>하지만 실제 ML에는 모델을 만드는 일이 전부가 아니라 문제에 필요한 데이터를 정의, 수집, 준비(가공)하는 과정이 필요하다.</p>
+<p>즉 하나의 ML 서비스가 만들어지기 위해서는 <strong>모델을 어떻게 만들 것인가? -&gt; 모델을 어떻게 평가할 것인가? → ML 모델을 서비스로 만들 것인가?</strong> 와 같은 노력의 과정이 필요하다. 게다가 위 과정을 거쳐서 모델이 만들어져서 서비스로 올라간다고 끝나는게 아니다.
+ML의 생애 주기는 배포된 서비스를 지속적으로 모니터링하고, 위 과정을 다시 돌아서 모델을 재학습, 재배포하는 과정까지 모두 포함한다.</p>
+<p><img alt="chapter1_img01" src="../_images/chapter1_img01.png" /></p>
+</section>
+<section id="devops-vs-mlops">
+<h2>DevOps vs MLOps<a class="headerlink" href="#devops-vs-mlops" title="이 표제에 대한 퍼머링크"></a></h2>
+<p>소프트웨어 기반 서비스가 발전하며 서버는 지속성은 주요한 요소가 되었다. 업데이트가 되더라도 유저 입장에서는 지속적으로 서비스가 사용이 가능해야 한다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">이것을</span> <span class="n">CI</span><span class="o">/</span><span class="n">CD</span> <span class="n">라고</span> <span class="n">부른다</span><span class="o">.</span> <span class="n">CI</span><span class="o">/</span><span class="n">CD는</span> <span class="n">지속적</span> <span class="n">통합</span><span class="p">(</span><span class="n">Continuous</span> <span class="n">Integration</span><span class="p">),</span> <span class="n">지속적</span> <span class="n">배포</span><span class="p">(</span><span class="n">Continuous</span> <span class="n">Deployment</span><span class="p">)</span><span class="n">이며</span> <span class="n">개발자</span><span class="p">(</span><span class="n">Developer</span><span class="p">)</span><span class="n">뿐만</span> <span class="n">아니라</span> <span class="n">운영자</span><span class="p">(</span><span class="n">Operator</span><span class="p">),</span> <span class="n">QA</span><span class="p">(</span><span class="n">Quality</span> <span class="n">Assuarance</span><span class="p">)</span><span class="n">와도</span> <span class="n">관련이</span> <span class="n">있다</span><span class="o">.</span> <span class="n">개발자는</span> <span class="n">코드</span> <span class="n">관련된</span> <span class="n">수정을</span> <span class="n">할</span> <span class="n">것이고</span><span class="p">,</span> <span class="n">운영자는</span> <span class="n">최신의</span> <span class="n">모델로</span> <span class="n">업데이트</span> <span class="n">해야하며</span><span class="p">,</span> <span class="n">QA는</span> <span class="n">그것에</span> <span class="n">대해서</span> <span class="n">평가를</span> <span class="n">해야한다</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">이러한</span> <span class="n">과정을</span> <span class="n">묶어</span> <span class="n">DevOps라고</span> <span class="n">하며</span> <span class="n">ML</span> <span class="n">서비스의</span> <span class="n">발전에</span> <span class="n">따라</span> <span class="n">ML</span> <span class="n">기반</span> <span class="n">서비스에서도</span> <span class="n">CI</span><span class="o">/</span><span class="n">CD의</span> <span class="n">적용은</span> <span class="n">필수적이며</span> <span class="n">CI</span><span class="o">/</span><span class="n">CD</span> <span class="n">뿐만</span> <span class="n">아니라</span> <span class="n">지속적</span> <span class="n">학습</span><span class="p">(</span><span class="n">CT</span><span class="p">),</span> <span class="n">분류</span> <span class="n">레이블</span> <span class="n">증가</span><span class="p">,</span> <span class="n">학습</span> <span class="n">시나리오</span> <span class="n">추가</span> <span class="n">등</span> <span class="n">기존</span> <span class="n">DevOps에서</span> <span class="n">제공되는</span> <span class="n">기능의</span> <span class="n">추가적인</span> <span class="n">기능이</span> <span class="n">포함된</span> <span class="n">MLOps의</span> <span class="n">개념이</span> <span class="n">생겼다</span><span class="o">.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>차이점 1. 모델을 만들고 배포하는 과정 추가</p></li>
+<li><p>차이점 2. 코드 뿐만 아니라 모델을 만들기 위한 데이터 공급이 필요 (실제 프로덕션에서 발생하는 데이터)</p></li>
+<li><p>공통점 : 입력값이 주어졌을 때, 프로세스를 처리, 처리 과정에서 단위 테스트, 통합 테스트 포함, 배포 후 모니터링</p></li>
+</ul>
+</section>
+<section id="mlops">
+<h2>MLOps의 이점<a class="headerlink" href="#mlops" title="이 표제에 대한 퍼머링크"></a></h2>
+<section id="id1">
+<h3>현업 관점<a class="headerlink" href="#id1" title="이 표제에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>변화에 대한 관리가 가능 (툴 제공 + 일하는 방식)</p></li>
+</ul>
+</section>
+<section id="it">
+<h3>IT/개발 부서<a class="headerlink" href="#it" title="이 표제에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>품질 관리를 ML 분야에서도 확장</p></li>
+<li><p>ML 프로세스의 수준 향상 (소스코드, 통합 테스트, 컴파일 / 배포, 모니터링)</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>데이터 전문가<a class="headerlink" href="#id2" title="이 표제에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>파이프라인 자동화</p></li>
+<li><p>지속적인 모니터링</p></li>
+<li><p>재학습/재배포 자동화</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="정리하며 배우는 MLOps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Lifecycle-1.html" class="btn btn-neutral float-right" title="MLOps Lifecycle 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 저작권 2022, 정리하며 배우는 MLOps 5기 스터디 팀.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

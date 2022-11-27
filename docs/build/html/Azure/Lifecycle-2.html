@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLOps Lifecycle 2 &mdash; 정리하며 배우는 MLOps 1.0.0 문서</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="MLOps Lifecycle 3" href="Lifecycle-3.html" />
+    <link rel="prev" title="MLOps Lifecycle 1" href="Lifecycle-1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 정리하며 배우는 MLOps
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Azure:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="MotivationForMLops.html">Motivation for MLOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lifecycle-1.html">MLOps Lifecycle 1</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MLOps Lifecycle 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">실험, 모델 학습/최적화/비교평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">실험 추적관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ml">자동화된 ML</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Lifecycle-3.html">MLOps Lifecycle 3</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Kubeflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Fairing.html">Fairing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Serving.html">Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Katib.html">Katib</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Practice:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Practice/Setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Practice/Katib.html">Katib</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Archiving:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Archiving/Archiving.html">Archiving</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/Ref.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">정리하며 배우는 MLOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MLOps Lifecycle 2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Azure/Lifecycle-2.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mlops-lifecycle-2">
+<h1>MLOps Lifecycle 2<a class="headerlink" href="#mlops-lifecycle-2" title="이 표제에 대한 퍼머링크"></a></h1>
+<section id="id1">
+<h2>실험, 모델 학습/최적화/비교평가<a class="headerlink" href="#id1" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>ML Lifecycle에서 <code class="docutils literal notranslate"><span class="pre">실험/학습</span></code> 파트</p></li>
+<li><p>데이터 가공 및 검증 파트가 데이터 준비 파트와 겹침</p>
+<ul>
+<li><p>데이터 가공 결과에 따라 모델이 변경되기도 함</p></li>
+<li><p>모델 성능에 데이터가 직접적인 영향을 미침</p></li>
+</ul>
+</li>
+</ul>
+<p>-&gt; 대규모 데이터를 대용량 클러스터에서 처리하는 것도 이 과정에 포함</p>
+<ul class="simple">
+<li><p>모델은 아래 입력 조건에 따라 결정됨</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">-</span> <span class="n">데이터</span>
+    <span class="o">-</span> <span class="n">학습</span> <span class="n">알고리즘</span>
+    <span class="o">-</span> <span class="n">하이퍼파라미터</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>입력 조건들을 바꿔가며 최적의 모델을 찾아가는 과정을 실험이라 부름</p></li>
+<li><p>이러한 반복적인 과정을 보다 쉽게 관리하고자 함</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>실험 추적관리<a class="headerlink" href="#id2" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">실험</span> <span class="pre">실행</span></code>: 위 3가지 입력(데이터, 학습 알고리즘, 하이퍼 파라미터)으로 하나의 실험을 수행</p></li>
+<li><p>위 실험과정에서 다양한 산출물들(입력 조건, 모델, 실험이력 등)이 발생하는데, 이를 체계적으로 관리하는 것이 중요함</p></li>
+<li><p>각 실험에 대해 입력값을 관리 + 산출된 모델의 메타 정보 관리</p></li>
+<li><p>애저에서는 실험별로 사용된 데이터 &amp; 모델의 버전 관리 &amp;  성능 확인 &amp; 서비스로 배포된 모델 추적 등의 기능을 제공함</p></li>
+</ul>
+</section>
+<section id="ml">
+<h2>자동화된 ML<a class="headerlink" href="#ml" title="이 표제에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>위 과정을 자동화하기 위한 도구(애저의 기능 이름인 듯, 일반적으로 Hyperparameter Optimization)</p></li>
+<li><p>높은 성능의 모델을 효율적으로 찾으려면?</p></li>
+<li><p>입력 조건에 따른 성능을 예측하고, 성능이 좋을 것으로 예상되는 입력 조건으로 다음 실험을 진행 &amp; 이 과정을 반복 수행</p></li>
+<li><p>애저에서는 이 작업을 수행할 때 다수의 모델이 실행되고 앙상블도 실행됨. 기본적인 성능 지표, 모델을 만들기위한 과정도 로그로 저장됨. 스냅샷 기능은 당시 실행한 py 파일 저장해둠.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Lifecycle-1.html" class="btn btn-neutral float-left" title="MLOps Lifecycle 1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Lifecycle-3.html" class="btn btn-neutral float-right" title="MLOps Lifecycle 3" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 저작권 2022, 정리하며 배우는 MLOps 5기 스터디 팀.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
