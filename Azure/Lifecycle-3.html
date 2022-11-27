@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLOps Lifecycle 3 &mdash; 정리하며 배우는 MLOps 1.0.0 문서</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="Intro" href="../Kubeflow/Intro.html" />
+    <link rel="prev" title="MLOps Lifecycle 2" href="Lifecycle-2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 정리하며 배우는 MLOps
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Azure:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="MotivationForMLops.html">Motivation for MLOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lifecycle-1.html">MLOps Lifecycle 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lifecycle-2.html">MLOps Lifecycle 2</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MLOps Lifecycle 3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">모델의 검증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">MLOps Lifecycle 3 : 모델 해석</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">모델 해석의 필요성</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">모델 해석 분류 기준</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">모델 해석 방법</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mlops-lifecycle-4">MLOps Lifecycle 4 : 모델 배포 및 서빙</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">모델 모니터링</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">모델 성능 하락 원인</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubeflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Fairing.html">Fairing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Serving.html">Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Katib.html">Katib</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Practice:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Practice/Setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Practice/Katib.html">Katib</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Archiving:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Archiving/Archiving.html">Archiving</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/Ref.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">정리하며 배우는 MLOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MLOps Lifecycle 3</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Azure/Lifecycle-3.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mlops-lifecycle-3">
+<h1>MLOps Lifecycle 3<a class="headerlink" href="#mlops-lifecycle-3" title="이 제목에 대한 퍼머링크"></a></h1>
+<section id="id1">
+<h2>모델의 검증<a class="headerlink" href="#id1" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>예측 성능</p>
+<ul>
+<li><p>모델의 예측값이 실제값에 얼마나 가까운지</p></li>
+<li><p>얼마나 잘 일반화(Generalized)되는지</p></li>
+<li><p>DS가 관심을 두는 부분</p></li>
+</ul>
+</li>
+<li><p>처리 성능</p>
+<ul>
+<li><p>모델이 예측값을 계산해내는데 소요되는 시간, 사용하는 컴퓨팅 자원</p></li>
+<li><p>안정적으로 얻을 수 있는 추론 성능</p></li>
+<li><p>SWE가 관심을 두는 부분</p></li>
+<li><p>서비스가 얼마나 안정적으로 되고 있는지 파악할 수 있는 요소(처리 시간, 처리량, 실패 유형 등)</p></li>
+<li><p>애저에서는 어플리케이션 인사이트 기능을 이용함. 코드에서 발생하는 모든 로그 정보가 한 곳에서 통합 관리됨</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id2">
+<h2>MLOps Lifecycle 3 : 모델 해석<a class="headerlink" href="#id2" title="이 제목에 대한 퍼머링크"></a></h2>
+<section id="id3">
+<h3>모델 해석의 필요성<a class="headerlink" href="#id3" title="이 제목에 대한 퍼머링크"></a></h3>
+<p><img alt="week4_1" src="../_images/mlops_week4_1.png" /></p>
+<ul class="simple">
+<li><p>대부분은 Black Box Model이다.</p></li>
+<li><p>정확도 만으로 모델의 성능을 평가할 수 없다.</p></li>
+<li><p>모델이 예측을 잘하는지 객관적 평가, 성능지표가 필요하다</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>모델 해석 분류 기준<a class="headerlink" href="#id4" title="이 제목에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Intrinsic</span> <span class="pre">vs</span> <span class="pre">Post-hoc</span></code> : 모델 자체로 해석 여부 가능한지, 아니라면 해석을 위한 새로운 모델링</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Model-specific</span> <span class="pre">vs</span> <span class="pre">Model-agnostic</span></code> : 특정 모델에만 적용되는지</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Global</span> <span class="pre">vs</span> <span class="pre">Local</span></code> : 데이터에 따른 모델의 범위</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>모델 해석 방법<a class="headerlink" href="#id5" title="이 제목에 대한 퍼머링크"></a></h3>
+<p><img alt="week4_2" src="../_images/mlops_week4_2.png" /></p>
+</section>
+</section>
+<section id="mlops-lifecycle-4">
+<h2>MLOps Lifecycle 4 : 모델 배포 및 서빙<a class="headerlink" href="#mlops-lifecycle-4" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">Serving</span></code>이란 다른 <code class="docutils literal notranslate"><span class="pre">애플리케이션에서</span> <span class="pre">ML</span> <span class="pre">모델을</span> <span class="pre">사용할</span> <span class="pre">수</span> <span class="pre">있도록</span> <span class="pre">모델을</span> <span class="pre">배포</span></code>하거나, <code class="docutils literal notranslate"><span class="pre">모델</span> <span class="pre">API를</span> <span class="pre">제공</span></code>하는 것을 의미</p>
+<p><img alt="week4_3" src="../_images/mlops_week4_3.png" /></p>
+<section id="id6">
+<h3>모델 모니터링<a class="headerlink" href="#id6" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>서빙 단계에서는 모니터링의 기능을 제공하여 모델에 대한 성능을 주기적으로 확인해야 함</p>
+<section id="id7">
+<h4>모델 성능 하락 원인<a class="headerlink" href="#id7" title="이 제목에 대한 퍼머링크"></a></h4>
+<ul class="simple">
+<li><p>Data Drift: 데이터의 통계적 변형</p></li>
+<li><p>Schema Drift: 데이터 스키마 변형</p></li>
+<li><p>Data Skew: 데이터의 불균형</p></li>
+<li><p>Concept Drift: 비즈니스 목적의 변형</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Lifecycle-2.html" class="btn btn-neutral float-left" title="MLOps Lifecycle 2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Kubeflow/Intro.html" class="btn btn-neutral float-right" title="Intro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 저작권 2022, 정리하며 배우는 MLOps 5기 스터디 팀.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

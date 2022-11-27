@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intro &mdash; 정리하며 배우는 MLOps 1.0.0 문서</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="Pipeline" href="Pipeline.html" />
+    <link rel="prev" title="MLOps Lifecycle 3" href="../Azure/Lifecycle-3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 정리하며 배우는 MLOps
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Azure:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Azure/MotivationForMLops.html">Motivation for MLOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Azure/Lifecycle-1.html">MLOps Lifecycle 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Azure/Lifecycle-2.html">MLOps Lifecycle 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Azure/Lifecycle-3.html">MLOps Lifecycle 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubeflow:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Intro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#devops">DevOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mlops">MLOps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#devops-mlops">DevOps &amp; MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#k8s">k8s</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">구성 모듈</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">k8s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">k8s 클러스터 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#master-worker-node">Master / Worker Node</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#master-node">Master Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#worker-node">Worker Node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kubeflow">Kubeflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kubeflow-workflow">Kubeflow workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">웹 실습</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">Kubeflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">설치</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">실행</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">삭제</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fairing.html">Fairing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Serving.html">Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Katib.html">Katib</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Practice:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Practice/Setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Practice/Katib.html">Katib</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Archiving:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Archiving/Archiving.html">Archiving</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/Ref.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">정리하며 배우는 MLOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Intro</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Kubeflow/Intro.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intro">
+<h1>Intro<a class="headerlink" href="#intro" title="이 제목에 대한 퍼머링크"></a></h1>
+<section id="devops">
+<h2>DevOps<a class="headerlink" href="#devops" title="이 제목에 대한 퍼머링크"></a></h2>
+<ol class="arabic simple">
+<li><p>등장배경 : 개발팀과 운영팀의 분리로 인한 문제 발생
+조직간 원활한 소통의 어려움 &gt; 서비스 품질 저하</p></li>
+<li><p>정의 :
+개발팀과 운영팀의 협업으로 전체 Life Cycle을 함께 관리하자는 철학 또는 운동
+개발팀과 IT팀이 더 빠르고 안정적으로 SW를 빌드 &amp; 릴리즈 할 수 있도록
+두 팀간의 프로세스를 자동화하는 일련의 과정</p></li>
+<li><p>CI / CD :
+CI: Continuous Integration
+CD: Continuous Delivery and Continuous Deployment</p></li>
+</ol>
+</section>
+<section id="mlops">
+<h2>MLOps<a class="headerlink" href="#mlops" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>ML팀과 운영팀의 문제를 해결하기 위한 방법 e.g. Data Drift, Schema Drift, Data Skew, Concept Drift…</p></li>
+</ul>
+<section id="devops-mlops">
+<h3>DevOps &amp; MLOps<a class="headerlink" href="#devops-mlops" title="이 제목에 대한 퍼머링크"></a></h3>
+<ul class="simple">
+<li><p>DevOps: 개발팀에서 개발한 기능이 정상적으로 배포될 수 있는지 확인</p></li>
+<li><p>MLOps:    ML팀에서 개발한 모델이 정상적으로 배포될 수 있는지 확인</p></li>
+</ul>
+<p>최근에는 ML팀이 직접 서비스를 운영할 수 있게 도와주는 과정까지 포함</p>
+</section>
+</section>
+<section id="k8s">
+<h2>k8s<a class="headerlink" href="#k8s" title="이 제목에 대한 퍼머링크"></a></h2>
+<p>다수의 컨테이너를 운영하기 위한 Container Orchestration System</p>
+<section id="id1">
+<h3>구성 모듈<a class="headerlink" href="#id1" title="이 제목에 대한 퍼머링크"></a></h3>
+<ol class="arabic simple">
+<li><p>Node : Kubernetes의 hardware 요소 중 가장 작은 단위</p></li>
+<li><p>Cluster : 여러 대의 Node를 모아서 하나의 Cluster로 구성함 ,K8s에서는 각 Node의 상태를 고려하여 배포할 프로그램을 유연하게 관리함</p></li>
+<li><p>Persistent Volume : Cluster에 배포된 application은 container로 실행되므로 내부에 저장된 데이터는 휘발될 수 있음 Local 또는 cloud storage를 cluster에 mount한 개념</p></li>
+<li><p>Pods : K8s의 기본 실행 단위, K8s는 container를 직접 실행하지 않고 pod이란 형태로 감싸서 실행</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Pod</span> <span class="n">내의</span> <span class="n">container</span> <span class="n">끼리는</span> <span class="n">동일한</span> <span class="n">자원과</span> <span class="n">local</span> <span class="n">network를</span> <span class="n">공유</span>
+<span class="n">Load</span> <span class="n">balancing</span> <span class="o">&amp;</span> <span class="n">Failure</span> <span class="n">resistance</span><span class="p">:</span> <span class="n">Pod</span> <span class="n">단위로</span> <span class="n">서비스의</span> <span class="n">사본을</span> <span class="n">여러</span> <span class="n">개</span> <span class="n">실행하여</span> <span class="n">부하를</span> <span class="n">분담하거나</span><span class="p">,</span> <span class="n">서비스가</span> <span class="n">중단되는</span> <span class="n">것을</span> <span class="n">방지</span>
+<span class="n">Scaling</span> <span class="n">up</span> <span class="o">&amp;</span> <span class="n">down의</span> <span class="n">단위이므로</span> <span class="n">Pod</span> <span class="n">내에</span> <span class="n">container</span> <span class="n">수를</span> <span class="n">최소화할</span> <span class="n">것을</span> <span class="n">권장</span><span class="p">(</span><span class="n">side</span><span class="o">-</span><span class="n">cars</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Deployments
+Pod만으로도 app container 실행 가능, 그러나 관리를 쉽게 하기 위해 deployment라는 레이어를 한 층 더 쌓아서 관리</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Deployment는</span> <span class="n">몇</span> <span class="n">개의</span> <span class="n">Pod을</span> <span class="n">항상</span> <span class="n">띄워둘</span> <span class="n">것인지</span> <span class="n">선언하고</span><span class="p">,</span>
+<span class="n">control</span> <span class="n">plane에서는</span> <span class="n">여기서</span> <span class="n">선언된</span> <span class="n">개수를</span> <span class="n">유지하도록</span> <span class="n">조절함</span>
+<span class="n">Pod을</span> <span class="n">어느</span> <span class="n">Node에서</span> <span class="n">실행할</span> <span class="n">지는</span> <span class="n">control</span> <span class="n">plane의</span> <span class="n">scheduler가</span> <span class="n">결정</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Namespaces</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Virtual</span> <span class="n">sub</span><span class="o">-</span><span class="n">cluster</span><span class="p">,</span> <span class="n">Cluster를</span> <span class="n">가상의</span> <span class="n">클러스터로</span> <span class="n">쪼개어</span><span class="p">,</span> <span class="n">쪼개진</span> <span class="n">클러스터</span> <span class="n">간에는</span> <span class="n">서로</span> <span class="n">영향을</span> <span class="n">끼치지</span> <span class="n">않도록</span> <span class="n">함</span><span class="o">.</span>
+<span class="n">하나의</span> <span class="n">클러스터에서</span> <span class="n">여러</span> <span class="n">조직</span> <span class="n">또는</span> <span class="n">프로젝트가</span> <span class="n">작업할</span> <span class="n">경우</span>
+<span class="n">또는</span> <span class="n">개발</span> <span class="n">및</span> <span class="n">운영</span> <span class="n">단계</span><span class="p">(</span><span class="n">Development</span><span class="p">,</span> <span class="n">Testing</span><span class="p">,</span> <span class="n">Production</span><span class="p">)</span><span class="n">별로</span> <span class="n">구분할</span> <span class="n">필요가</span> <span class="n">있는</span> <span class="n">경우에</span> <span class="n">사용</span>
+<span class="n">K8s에서는</span> <span class="n">기본적으로</span> <span class="mi">4</span><span class="n">가지</span> <span class="n">namespace가</span> <span class="n">생성됨</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">kube</span><span class="o">-</span><span class="n">system</span><span class="p">,</span> <span class="n">kube</span><span class="o">-</span><span class="n">public</span><span class="p">,</span> <span class="n">kube</span><span class="o">-</span><span class="n">node</span><span class="o">-</span><span class="n">lease</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id2">
+<h2>k8s<a class="headerlink" href="#id2" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>서비스 디스커버리와 로드 밸런싱 : DNS 이름을 사용하거나 자체 IP 주소를 사용하여 컨테이너를 노출</p></li>
+<li><p>스토리지 오케스트레이션 : 로컬 저장소, 공용 클라우드 공급자 등과 같이 원하는 저장소 시스템을 자동으로 탑재</p></li>
+<li><p>자동화된 롤아웃과 롤백 : 원하는 상태를 서술하고 현재 상태를 원하는 상태로 설정한 속도에 따라 변경 가능</p></li>
+<li><p>자동화된 빈 패킹 : 각 컨테이너가 필요로 하는 CPU와 메모리(RAM)를 제공</p></li>
+<li><p>자동화된 복구(self-healing) : 실패한 컨테이너를 다시 시작하고, 컨테이너를 교체</p></li>
+<li><p>시크릿과 구성 관리 : 암호, OAuth 토큰 및 SSH 키와 같은 중요한 정보를 저장하고 관리</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>k8s 클러스터 구조<a class="headerlink" href="#id3" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><img alt="week4_4" src="../_images/mlops_week4_4.png" /></p>
+<ul class="simple">
+<li><p>쿠버네티스 아키텍처에서 클러스터(Cluster)란 컨테이너 형태의 애플리케이션을 호스팅하는 물리/가상 환경의 노드들로 이루어진 집합</p></li>
+<li><p>Node는 하나의 가상머신을 의미합니다.
+쿠버네티스는 컨테이너화 된 애플리케이션을 실행하는 Worker Node와 그러한 Worker Node를 관리하는 Master Node로 구성됩니다.</p></li>
+</ul>
+</section>
+<section id="master-worker-node">
+<h2>Master / Worker Node<a class="headerlink" href="#master-worker-node" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><img alt="week4_5" src="../_images/mlops_week4_5.png" /></p>
+<section id="master-node">
+<h3>Master Node<a class="headerlink" href="#master-node" title="이 제목에 대한 퍼머링크"></a></h3>
+<p><img alt="masternode" src="../_images/masternode.png" /></p>
+</section>
+<section id="worker-node">
+<h3>Worker Node<a class="headerlink" href="#worker-node" title="이 제목에 대한 퍼머링크"></a></h3>
+<p><img alt="workernode" src="../_images/workernode.png" /></p>
+</section>
+</section>
+<section id="kubeflow">
+<h2>Kubeflow<a class="headerlink" href="#kubeflow" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><img alt="kubeflow" src="../_images/mlops_week4_6.png" /></p>
+<p><img alt="kubeflowcomponent" src="../_images/kubeflowcomponent.png" /></p>
+</section>
+<section id="kubeflow-workflow">
+<h2>Kubeflow workflow<a class="headerlink" href="#kubeflow-workflow" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><img alt="kubeflowcomponent" src="../_images/exflow.png" />
+<img alt="kubeflowcomponent" src="../_images/productionflow.png" /></p>
+<section id="id4">
+<h3>웹 실습<a class="headerlink" href="#id4" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>웹 실습환경 https://labs.play-with-k8s.com/</p>
+</section>
+</section>
+<section id="id5">
+<h2>Kubeflow<a class="headerlink" href="#id5" title="이 제목에 대한 퍼머링크"></a></h2>
+<section id="id6">
+<h3>설치<a class="headerlink" href="#id6" title="이 제목에 대한 퍼머링크"></a></h3>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://kubernetes.io/ko/docs/tasks/tools/install-kubectl-linux/">kubectl</a>  : 생성한 클러스터에 요청을 보내기 위한 클라이언트 툴</p></li>
+<li><p><a class="reference external" href="https://minikube.sigs.k8s.io/docs/start/">minikube</a> : k8s 클러스터를 구성하기 하기 위해 사용되며 k8s에 비해 경량화되어 일반 데스크탑에서도 사용이 가능함</p></li>
+<li><p><a class="reference external" href="https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/kustomize_3.2.0_darwin_amd64">Kustomize</a> : k8s 네트워크에 커스텀된 Pod 모듈을 추가할 수 있음 Kubeflow를 설치하는데 사용됨</p></li>
+<li><p><a class="reference external" href="https://github.com/kubeflow/manifests">kubeflow</a> : Manifest를 활용하여 Kubeflow 네임스페이스 내 katib, 파이프라인을 설치할 수 있음</p></li>
+</ol>
+</section>
+<section id="id7">
+<h3>실행<a class="headerlink" href="#id7" title="이 제목에 대한 퍼머링크"></a></h3>
+<p>UI만 실행하는 방법</p>
+<ol class="arabic simple">
+<li><p>minikube 클러스터(EX 이름 : mlops) 생성</p></li>
+<li><p>kubeflow Namespace 생성</p></li>
+<li><p>Istio / Cert-manager /Dex / OIDC AuthService  Namespace 생성</p></li>
+<li><p>Kubeflow 네임스페이스에 UI 설치 kustomize build apps/centraldashboard/upstream/overlays/istio | kubectl apply -f –</p></li>
+<li><p>UI 포트 열기</p></li>
+</ol>
+</section>
+<section id="id8">
+<h3>삭제<a class="headerlink" href="#id8" title="이 제목에 대한 퍼머링크"></a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># minikube</span>
+minikube stop
+minikube status
+minikube delete
+minikube delete -all
+
+<span class="c1"># kubectl</span>
+kubectl config get-clusters
+kubectl config delete-cluster my-cluster 
+kubectl config delete-context my-cluster-context
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Azure/Lifecycle-3.html" class="btn btn-neutral float-left" title="MLOps Lifecycle 3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Pipeline.html" class="btn btn-neutral float-right" title="Pipeline" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 저작권 2022, 정리하며 배우는 MLOps 5기 스터디 팀.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

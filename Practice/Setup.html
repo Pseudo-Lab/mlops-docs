@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup &mdash; 정리하며 배우는 MLOps 1.0.0 문서</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="Katib" href="Katib.html" />
+    <link rel="prev" title="Katib" href="../Kubeflow/Katib.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 정리하며 배우는 MLOps
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Azure:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Azure/MotivationForMLops.html">Motivation for MLOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Azure/Lifecycle-1.html">MLOps Lifecycle 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Azure/Lifecycle-2.html">MLOps Lifecycle 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Azure/Lifecycle-3.html">MLOps Lifecycle 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubeflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Fairing.html">Fairing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Serving.html">Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kubeflow/Katib.html">Katib</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Practice:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version">version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minikube">1. minikube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kubeflow">2. Kubeflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kustomize">kustomize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kubeflow-manifest">kubeflow manifest</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dashboard">3. dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Katib.html">Katib</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Archiving:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Archiving/Archiving.html">Archiving</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/Ref.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">정리하며 배우는 MLOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Setup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Practice/Setup.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="이 제목에 대한 퍼머링크"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Minikube</span> <span class="pre">설치</span> <span class="pre">-&gt;</span> <span class="pre">Kubeflow</span> <span class="pre">파드</span> <span class="pre">생성</span> <span class="pre">-&gt;</span> <span class="pre">대시보드</span> <span class="pre">포트</span> <span class="pre">열기</span></code> 순서로 진행</p>
+<p><a class="reference internal" href="../Kubeflow/Intro.html"><span class="doc std std-doc">구성 요소에 대한 설명</span></a></p>
+<section id="version">
+<h2>version<a class="headerlink" href="#version" title="이 제목에 대한 퍼머링크"></a></h2>
+<ul class="simple">
+<li><p>kubernetes-version=v1.21.7</p></li>
+<li><p>kustomize v3.10.0</p></li>
+<li><p>kubeflow v1.4.0</p></li>
+</ul>
+</section>
+<section id="minikube">
+<h2>1. minikube<a class="headerlink" href="#minikube" title="이 제목에 대한 퍼머링크"></a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>minikube start --kubernetes-version<span class="o">=</span>v1.21.7 
+</pre></div>
+</div>
+</section>
+<section id="kubeflow">
+<h2>2. Kubeflow<a class="headerlink" href="#kubeflow" title="이 제목에 대한 퍼머링크"></a></h2>
+<section id="kustomize">
+<h3>kustomize<a class="headerlink" href="#kustomize" title="이 제목에 대한 퍼머링크"></a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>wget https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.10.0/kustomize_v3.10.0_linux_amd64.tar.gz
+tar -zxvf kustomize_v3.10.0_linux_amd64.tar.gz sudo mv kustomize /usr/local/bin/kustomize 
+</pre></div>
+</div>
+</section>
+<section id="kubeflow-manifest">
+<h3>kubeflow manifest<a class="headerlink" href="#kubeflow-manifest" title="이 제목에 대한 퍼머링크"></a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone -b v1.4.0 https://github.com/kubeflow/manifests.git 
+<span class="nb">cd</span> manifests
+<span class="k">while</span> ! kustomize build example <span class="p">|</span> kubectl apply -f -<span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="s2">&quot;Retrying to apply resources&quot;</span><span class="p">;</span> sleep <span class="m">10</span><span class="p">;</span> <span class="k">done</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dashboard">
+<h2>3. dashboard<a class="headerlink" href="#dashboard" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">설치</span> <span class="pre">시</span> <span class="pre">모든</span> <span class="pre">파드</span> <span class="pre">생성</span> <span class="pre">완료까지</span> <span class="pre">최소</span> <span class="pre">15분</span> <span class="pre">가량</span> <span class="pre">소요</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>kubectl get pods -A <span class="c1"># 설치확인 (Pod 상태 확인 가능)</span>
+kubectl port-forward svc/istio-ingressgateway -n istio-system <span class="m">8888</span>:80 <span class="c1"># Dashboard 포트 열기 (8888 to 80</span>
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="이 제목에 대한 퍼머링크"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Kubeflow/Katib.html" class="btn btn-neutral float-left" title="Katib" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Katib.html" class="btn btn-neutral float-right" title="Katib" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 저작권 2022, 정리하며 배우는 MLOps 5기 스터디 팀.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

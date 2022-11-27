@@ -20,8 +20,7 @@
         <script src="_static/translations.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="색인" href="genindex.html" />
-    <link rel="search" title="검색" href="search.html" />
-    <link rel="prev" title="정리하며 배우는 MLOps" href="index.html" /> 
+    <link rel="search" title="검색" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,153 +38,33 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Chapter 1. Motivation for MLOps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ml">ML 생애주기</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#devops-vs-mlops">DevOps vs MLOps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mlops">MLOps의 이점</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">현업 관점</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#it">IT/개발 부서</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">데이터 전문가</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Azure:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Azure/MotivationForMLops.html">Motivation for MLOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Azure/Lifecycle-1.html">MLOps Lifecycle 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Azure/Lifecycle-2.html">MLOps Lifecycle 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Azure/Lifecycle-3.html">MLOps Lifecycle 3</a></li>
 </ul>
-</li>
+<p class="caption" role="heading"><span class="caption-text">Kubeflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Kubeflow/Intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kubeflow/Pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kubeflow/Fairing.html">Fairing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kubeflow/Serving.html">Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kubeflow/Katib.html">Katib</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#chapter-2-mlops-lifecycle-1">Chapter 2. MLOps Lifecycle 1 : 데이터 준비</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id3">문제 정의</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">데이터 확보</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">데이터셋 탐색 및 가공</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">데이터 검증</a></li>
+<p class="caption" role="heading"><span class="caption-text">Practice:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Practice/Setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Practice/Katib.html">Katib</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#chapter-3-mlops-lifecycle-2">Chapter 3. MLOps Lifecycle 2 : 실험 학습</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id7">실험, 모델 학습/최적화/비교평가</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id8">실험 추적관리</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">자동화된 ML</a></li>
+<p class="caption" role="heading"><span class="caption-text">Archiving:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Archiving/Archiving.html">Archiving</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#chapter-4-mlops-lifecycle-k8s-kubeflow">Chapter 4. MLOps Lifecycle : 모델 검증 및 배포, 서빙 / k8s, kubeflow 기본</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id10">모델의 검증</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mlops-lifecycle-3">MLOps Lifecycle 3 : 모델 해석</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id11">모델 해석의 필요성</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">모델 해석 분류 기준</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">모델 해석 방법</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#mlops-lifecycle-4">MLOps Lifecycle 4 : 모델 배포 및 서빙</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id14">모델 모니터링</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id15">모델 성능 하락 원인</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#k8s-kubeflow">k8s, kubeflow 기본</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#k8s">k8s</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">k8s 클러스터 구조</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#master-worker-node">Master / Worker Node</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#master-node">Master Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#worker-node">Worker Node</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#kubeflow">Kubeflow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#kubeflow-workflow">Kubeflow workflow</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#chapter-5-k8s-kubeflow">Chapter 5. k8s, kubeflow 입문</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#devops">DevOps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id17">MLOps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#devops-mlops">DevOps &amp; MLOps</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id18">k8s</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id19">구성 모듈</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">노드 구조</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">웹 실습</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id22">Kubeflow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id23">설치</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id24">실행</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id25">삭제</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#chapter-6-pipeline-1">Chapter 6. Pipeline - 1</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pipeline">Pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#argo-cd">Argo CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kubeflow-pipeline">Kubeflow Pipeline 구성요소</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#kubeflow-ui">Kubeflow UI 웹 서버</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#python-sdk">Python SDK</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pipelines-service">Pipelines Service (중앙 제어)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#kubernetes">Kubernetes 리소스 (리소스 생성)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#job">오케스트레이션 컨트롤러 (컨테이너(Job) 실행)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pipeline-persistence-agent">Pipeline Persistence Agent</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#kube-api-server">Kube API Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#metadata">Metadata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#artifact">Artifact</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#chapter-7-pipeline-2">Chapter 7. Pipeline - 2</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id26">설치 방법</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kfp">KFP 용어</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#component">Component</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#step">Step</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#experiment">Experiment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#run-and-recurring-run-experiment">Run and Recurring run (Experiment 내 포함)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id27">Artifact</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsl">DSL</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#kfp-sdk">KFP SDK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kfp-cli-tool">KFP CLI Tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id28">컴포넌트 생성 실습</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id29">순서</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id30">1. 컴포넌트 작성</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id31">2. 컴포넌트 도커이미지 생성</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id32">3. 컴포넌트 만들기 - 컴포넌트 빌드</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id33">4. 파이프라인 빌드</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id34">5. 파이프라인 컴파일 후 업로드</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id35">파이프라인 패턴</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#chapter-8-fairing-1">Chapter 8. Fairing - 1</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#fairing">Fairing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#components-of-fairing">Components of fairing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#preprocessor">Preprocessor (전처리기)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#builder">Builder (생성자)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#deployer">Deployer (배포자)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-install-fairing">How to install fairing?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-use-fairing-api">How to use fairing API</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#fairing-config-module">Fairing config module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#trainjob-api">TrainJob API</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#appendix">Appendix</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#mlflow">MLFlow 예제</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mlops-level">MLOps Level</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#level-0">Level 0</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#level-1">Level 1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#level-2">Level 2</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id36"></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#reference">Reference</a></li>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Reference/Ref.html">Reference</a></li>
 </ul>
 
         </div>
@@ -1037,9 +916,7 @@ kubectl config delete-context my-cluster-context
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="정리하며 배우는 MLOps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
+          <footer>
 
   <hr/>
 
