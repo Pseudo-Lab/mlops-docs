@@ -53,7 +53,17 @@
 <li class="toctree-l1"><a class="reference internal" href="Pipeline.html">Pipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Fairing.html">Fairing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Serving.html">Serving</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Katib</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Katib</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">구성요소</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#experiment">Experiment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trial">Trial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#suggestion">Suggestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#worker-job">Worker job</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#workflow">Workflow</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Practice:</span></p>
 <ul>
@@ -95,6 +105,51 @@
              
   <section id="katib">
 <h1>Katib<a class="headerlink" href="#katib" title="이 제목에 대한 퍼머링크"></a></h1>
+<p>Kubeflow Components로 동작되며 Hyperparameter tunning을 제공</p>
+<section id="id1">
+<h2>구성요소<a class="headerlink" href="#id1" title="이 제목에 대한 퍼머링크"></a></h2>
+<p>Experiment, Suggestion, Trial, Job으로 구성됨</p>
+<section id="experiment">
+<h3>Experiment<a class="headerlink" href="#experiment" title="이 제목에 대한 퍼머링크"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">하나의</span> <span class="pre">실행단위로</span> <span class="pre">Job</span> <span class="pre">개념과</span> <span class="pre">같음.</span> <span class="pre">k8s</span> <span class="pre">내</span> <span class="pre">커스텀</span> <span class="pre">리소스로</span> <span class="pre">Trial</span> <span class="pre">를</span> <span class="pre">실행하는</span> <span class="pre">역할</span></code></p>
+<ul class="simple">
+<li><p>Katib는 HPO 한 세트를 Experiment라는 custom resource로 정의하고 관리
+Experimen는 목표로 하는 대상 값의 Hyperparameters 탐색 작업, Hyperparameters를 찾기 위해서는 Experiment 리소스를 생성해야함</p></li>
+<li><p>Trial Count : 실행 횟수 (병렬)</p></li>
+<li><p>Trial Template : Trial 파드 템플릿</p></li>
+<li><p>Objective: Hyperparameters 튜닝의 목표 정의, Hyperparameters 튜닝 시 metric의 최대화/최소화 여부 지정.</p></li>
+<li><p>Search Parameter: Hyperparameters 튜닝 작업시 사용해야 할 모든 Hyperparameters 값과 Hyperparameters의 제약 조건을 정의. 예를 들어, Learning rate 값을 결정하고 optimizer로 sgd와 adam을 사용한다고 정의.</p></li>
+<li><p>Search Algorithm: Hyperparameters 튜닝 작업시 사용할 알고리즘을 정의함 Random Search, Grid Search, Bayesian Optimization 등 다용한 알고리즘을 사용함. 최적의 Hyperparameters 값을 검색 할 때 사용할 알고리즘.</p></li>
+</ul>
+</section>
+<section id="trial">
+<h3>Trial<a class="headerlink" href="#trial" title="이 제목에 대한 퍼머링크"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">최적화</span> <span class="pre">과정의</span> <span class="pre">반복</span> <span class="pre">단위.</span> <span class="pre">Experiment의</span> <span class="pre">Trial</span> <span class="pre">Count</span> <span class="pre">값</span> <span class="pre">만큼</span> <span class="pre">Trial을</span> <span class="pre">생성하고</span> <span class="pre">순차적으로</span> <span class="pre">실행.</span> <span class="pre">하나의</span> <span class="pre">Trial</span> <span class="pre">에서</span> <span class="pre">하나의</span> <span class="pre">worker</span> <span class="pre">job을</span> <span class="pre">실행</span></code></p>
+<ul class="simple">
+<li><p>Trial은 제안된 Hyperparameters를 평가하기 위한 하나의 작업(실행 단위)을 의미하는 사용자 리소스.</p></li>
+<li><p>제안된 매개 변수 값들을 Woker Job 인스턴스 할당해서 실행함.</p></li>
+<li><p>Experiment는 목표나 설정한 최대 시도 횟수에 도달 할 때까지 Trial을 계속 실행함.</p></li>
+</ul>
+</section>
+<section id="suggestion">
+<h3>Suggestion<a class="headerlink" href="#suggestion" title="이 제목에 대한 퍼머링크"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Search</span> <span class="pre">Algorithm</span> <span class="pre">으로</span> <span class="pre">생성한</span> <span class="pre">하이퍼파라미터</span> <span class="pre">값의</span> <span class="pre">모음</span></code></p>
+<ul class="simple">
+<li><p>하나의 Experiment 에서 하나의 Suggestion 을 생성</p></li>
+<li><p>Katib는 각 Experiment 사용자 리소스 마다 하나의 Suggestion 사용자 리소스를 생성함</p></li>
+<li><p>Suggestion은 Search Algorithm이 제안한 Hyperparameters 값들의 세트를 가지고 있음</p></li>
+<li><p>Katib는 제안된 Hyperparameters 값들을 세트별로 평가하기 위한 Trial을 작성함</p></li>
+</ul>
+</section>
+<section id="worker-job">
+<h3>Worker job<a class="headerlink" href="#worker-job" title="이 제목에 대한 퍼머링크"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">파라미터와</span> <span class="pre">Suggestion</span> <span class="pre">값을</span> <span class="pre">이용해</span> <span class="pre">Trial,</span> <span class="pre">각각의</span> <span class="pre">값을</span> <span class="pre">평가하고</span> <span class="pre">계사하는</span> <span class="pre">프로세스.</span> <span class="pre">실제로</span> <span class="pre">학습을</span> <span class="pre">수행하며</span> <span class="pre">K8s</span> <span class="pre">Job</span> <span class="pre">과</span> <span class="pre">TFJob,</span> <span class="pre">PyTorch</span> <span class="pre">을</span> <span class="pre">사용</span></code></p>
+</section>
+</section>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="이 제목에 대한 퍼머링크"></a></h2>
+<p><a class="reference external" href="https://github.com/kubeflow/katib/blob/master/docs/workflow-design.md">자세한 동작과정</a></p>
+</section>
 </section>
 
 

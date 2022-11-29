@@ -17,3 +17,4 @@
 |12|[kubeflow 구성요소 - 2](https://learning-sarah.tistory.com/entry/Kubeflow-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C-Fairing?category=1010018)|
 |13|[kubeflow서빙](https://devocean.sk.com/blog/techBoardDetail.do?ID=163645)|
 |14|[kubeflow공식문서](https://www.kubeflow.org/docs/)|
+|15|[katib 구조](https://jx2lee.github.io/cloud-kubeflow-katib/)|
