@@ -52,11 +52,14 @@
 <li class="toctree-l1"><a class="reference internal" href="Intro.html">Intro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pipeline.html">Pipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Fairing.html">Fairing</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Serving</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#control-plane">Control Plane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#data-plane">Data Plane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id1">예제</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id2">출처</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Serving</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#control-plane">Control Plane</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-plane">Data Plane</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">출처</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Katib.html">Katib</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Practice:</span></p>
@@ -99,6 +102,8 @@
              
   <section id="serving">
 <h1>Serving<a class="headerlink" href="#serving" title="이 제목에 대한 퍼머링크"></a></h1>
+<section id="id1">
+<h2>Serving<a class="headerlink" href="#id1" title="이 제목에 대한 퍼머링크"></a></h2>
 <p>2021/09 까지 Kubeflow 안의 Component인 KFServing.</p>
 <p>그 이후 독립적으로 취급,유지하게 되었고 <a class="reference external" href="https://github.com/kserve/kserve">KServe</a>로 이름을 변경.
 <img alt="Kserve" src="../_images/serving_1.png" /></p>
@@ -122,7 +127,7 @@
 </ul>
 </section>
 <section id="control-plane">
-<h1>Control Plane<a class="headerlink" href="#control-plane" title="이 제목에 대한 퍼머링크"></a></h1>
+<h2>Control Plane<a class="headerlink" href="#control-plane" title="이 제목에 대한 퍼머링크"></a></h2>
 <p><img alt="Kserve3" src="../_images/serving_3.png" />
 </br>
 <a class="reference external" href="https://kserve.github.io/website/0.9/modelserving/control_plane/">더보기</a></p>
@@ -130,7 +135,7 @@
 KServe Controller를 통해 service/ingress resource/model server container/model agent container for request response logging,batching/model pulling 을 한다.</p>
 </section>
 <section id="data-plane">
-<h1>Data Plane<a class="headerlink" href="#data-plane" title="이 제목에 대한 퍼머링크"></a></h1>
+<h2>Data Plane<a class="headerlink" href="#data-plane" title="이 제목에 대한 퍼머링크"></a></h2>
 <p><img alt="Kserve4" src="../_images/serving_4.png" />
 </br>
 <a class="reference external" href="https://kserve.github.io/website/0.9/modelserving/data_plane/">더보기</a></p>
@@ -138,19 +143,31 @@ KServe Controller를 통해 service/ingress resource/model server container/mode
 <p>Explainer: 모델을 통해 만들어진 결과물과 해석, explanation을 제공한다.</p>
 <p>Transformer: 전/후 처리를 진행한다.</p>
 </section>
-<section id="id1">
-<h1>예제<a class="headerlink" href="#id1" title="이 제목에 대한 퍼머링크"></a></h1>
-<p>https://github.com/myoh0623/kubeflow/tree/master/section7_kserve</p>
-<p>https://kserve.github.io/website/0.9/modelserving/v1beta1/transformer/torchserve_image_transformer/#extend-modelserver-and-implement-prepost-processing-functions</p>
-</section>
 <section id="id2">
-<h1>출처<a class="headerlink" href="#id2" title="이 제목에 대한 퍼머링크"></a></h1>
-<p>https://kserve.github.io/website/0.9/modelserving/control_plane/#control-plane-components</p>
-<p>https://youtu.be/2yLXrXG3n-U</p>
-<p>https://youtu.be/C03F3NvOD9Y</p>
-<p>https://github.com/myoh0623/kubeflow/blob/master/section7_kserve/0_tutorial.ipynb</p>
-<p>https://devocean.sk.com/blog/techBoardDetail.do?ID=163739</p>
-<p>https://github.com/kserve/kserve</p>
+<h2>예제<a class="headerlink" href="#id2" title="이 제목에 대한 퍼머링크"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">myoh0623</span><span class="o">/</span><span class="n">kubeflow</span><span class="o">/</span><span class="n">tree</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">section7_kserve</span>
+
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">kserve</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">website</span><span class="o">/</span><span class="mf">0.9</span><span class="o">/</span><span class="n">modelserving</span><span class="o">/</span><span class="n">v1beta1</span><span class="o">/</span><span class="n">transformer</span><span class="o">/</span><span class="n">torchserve_image_transformer</span><span class="o">/</span><span class="c1">#extend-modelserver-and-implement-prepost-processing-functions</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>출처<a class="headerlink" href="#id3" title="이 제목에 대한 퍼머링크"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://kserve.github.io/website/0.9/modelserving/control_plane/#control-plane-components
+
+https://youtu.be/2yLXrXG3n-U
+
+https://youtu.be/C03F3NvOD9Y
+
+https://github.com/myoh0623/kubeflow/blob/master/section7_kserve/0_tutorial.ipynb
+
+https://devocean.sk.com/blog/techBoardDetail.do?ID=163739
+
+https://github.com/kserve/kserve
+
+</pre></div>
+</div>
+</section>
 </section>
 
 
